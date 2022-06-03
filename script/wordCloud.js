@@ -40,7 +40,7 @@ function draw(words) {
     .style("margin", (d) => `10px`)
     .style("fill", (d) => d.color)
     .attr("text-anchor", "middle")
-    .attr("transform", (d) => `translate(${[d.x, d.y / 1.12]})`) //rotate(${d.rotate})
+    .attr("transform", (d) => `translate(${[d.x, d.y / 1.12]}) rotate(${d.rotate})`) //
     .text(function (d) {
       return d.text;
     });

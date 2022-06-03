@@ -7,10 +7,11 @@ const data = {
   labels: labels,
   datasets: [
     {
-      label: "조회수 ",
+      label: "  조회수 ",
       data: [0, 7, 5, 3, 8, 0, 7, 2],
       borderColor: "skyblue",
       backgroundColor: "skyblue",
+      borderJoinStyle: 'round',
       tension: 0.1,
       pointBorderWidth: 10,
       drawActiveElementsOnTop: false,
@@ -44,6 +45,6 @@ const config = {
 };
 
 Chart.defaults.font.family = "NanumSquareRound";
-Chart.defaults.font.size = 30;
+Chart.defaults.font.size = 25;
 
 const myChart = new Chart(document.getElementById("myChart"), config);
