@@ -45,6 +45,6 @@ const config = {
 };
 
 Chart.defaults.font.family = "NanumSquareRound";
-Chart.defaults.font.size = 25;
+Chart.defaults.font.size = 20;
 
 const myChart = new Chart(document.getElementById("myChart"), config);
