@@ -1,0 +1,15 @@
+.network-graph {
+  width: 100%;
+  height: 100%;
+}
+
+#NETWORK_GRAPH {
+  width: auto;
+  height: auto;
+}
+
+#NETWORK_GRAPH .g-holder {
+  transform: scale(3) translate(0px, 0px);
+  transform-origin: center;
+  stroke-linecap: round;
+}

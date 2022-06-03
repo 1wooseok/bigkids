@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- 선 그래프 cdn -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
+      integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- 워드클라우드 cdn -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+    <!-- 네트워크 그래프 cdn -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+    ></script>
+</head>
+<body>
+    <div id="wrap">
+        <header>
+            <div class="inner_wrap">
+                <div class="logo">
+                    <a href="#">
+                        <img src="./image/logo.png" alt="logo">
+                    </a>
+                </div>
+                <ul class="menu">
+                    <li>
+                        <a href="#">
+                            <img class="hidden" src="./image/char_black.png" alt="">    
+                            <img src="./image/char_color.png" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./video.html">
+                            <img src="./image/video_black.png" alt="">
+                            <img class="hidden" src="./image/video_color.png" alt="">    
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <div class="con1">
+                <h3>오늘의 키워드</h3>
+                <div class="keyword">
+                    <div class="off_keyword">핑크퐁</div>
+                    <div class="arr"><img src="./image/next-2.png" alt="arr"></div>
+                    <div class="on_keyword">로블록스</div>
+                    <div class="arr"><img src="./image/next-2.png" alt="arr"></div>
+                    <div class="off_keyword">환경오염</div>
+                </div>
+                <div class="key_times">
+                    <p>기간 : 2022. 03. 21 ~ 2022. 03. 28 </p>
+                </div>
+            </div>
+            <div class="con2">
+                <div class="inner_wrap">
+                    <div class="title">
+                        <img class="cr" src="./image/cr-1.png" alt="cr">
+                        <p>어떤 내용이 있을까?</p>
+                        <img class="icon" src="./image/box_icon.png" alt="">
+                        <div class="bottom_bar">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- 우석 : 그래프2개 wrap-->
+                <div class="inner_wrap" style="display: flex;">
+                    <!-- 우석: 워드 클라우드-->
+                    <div id="word-cloud" style="flex: 1;"></div>
+                    <!-- 우석 : 네트워크 그래프-->
+                    <link rel="stylesheet" href="./css/networkGraph.css">
+                    <div class="network-graph" style="flex: 1;">
+                        <svg id="NETWORK_GRAPH"></svg>
+                    </div>
+                </div>
+                <!-- -->
+            </div>
+            <div class="con3">
+                <div class="inner_wrap">
+                    <div class="title">
+                        <img class="cr" src="./image/cr-2.png" alt="cr">
+                        <p>뉴스가 언제 나왔지?</p>
+                        <img class="icon" src="./image/box_icon.png" alt="">
+                        <div class="bottom_bar">
+                        </div>
+                    </div>
+                </div>
+                <!-- 우석: 선 그래프 -->
+                <link rel="stylesheet" href="./css/linechart.css">
+                <div class="inner_wrap">
+                    <div class="lineChart_wrap">
+                        <canvas
+                        id="myChart"
+                        aria-labelledby="Hello ARIA World"
+                        role="img"
+                        ></canvas>
+                        <div class="chart-border"></div>
+                        <div class="xAxis">
+                            <div class="x-label-wrap">
+                                <div class="x-label">월</div>
+                                <div class="x-date-label">22.03.03</div>
+                            </div>
+                            <div class="x-label-wrap">
+                                <div class="x-label">화</div>
+                                <div class="x-date-label">22.03.03</div>
+                            </div>
+                            <div class="x-label-wrap">
+                                <div class="x-label">수</div>
+                                <div class="x-date-label">22.03.03</div>
+                            </div>
+                            <div class="x-label-wrap">
+                                <div class="x-label">목</div>
+                                <div class="x-date-label">22.03.03</div>
+                            </div>
+                            <div class="x-label-wrap">
+                                <div class="x-label">금</div>
+                                <div class="x-date-label">22.03.03</div>
+                            </div>
+                            <div class="x-label-wrap">
+                                <div class="x-label">토</div>
+                                <div class="x-date-label">22.03.03</div>
+                            </div>
+                            <div class="x-label-wrap">
+                                <div class="x-label">일</div>
+                                <div class="x-date-label">22.03.03</div>
+                            </div>
+                            <div class="x-label-wrap">
+                                <div class="x-label">월</div>
+                                <div class="x-date-label">22.03.03</div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- -->
+            </div>
+            <div class="con4">
+                <div class="inner_wrap">
+                    <div class="title">
+                        <img class="cr" src="./image/cr-3.png" alt="cr">
+                        <p>이렇게 보면 어떨까?</p>
+                        <img class="icon" src="./image/box_icon.png" alt="">
+                        <div class="bottom_bar">
+
+                        </div>
+                    </div>
+
+                    <table class="con4_table">
+                        <thead>
+                            <tr>
+                                <th>날짜</th>
+                                <th>언론사</th>
+                                <th>제목</th>
+                                <th>링크</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>20220322</td>
+                                <td>헤럴드경제</td>
+                                <td>교육계, 미래산업으로 급부상한 '메타버스' 전문가 양성, 활용 주력 교육계, 미래산업으로 급부상한</td>
+                                <td>http://www.joongdo.com</td>
+                            </tr>
+                            <tr>
+                                <td>20220322</td>
+                                <td>헤럴드경제</td>
+                                <td>교육계, 미래산업으로 급부상한 '메타버스' 전문가 양성, 활용 주력 교육계, 미래산업으로 급부상한</td>
+                                <td>http://www.joongdo.com</td>
+                            </tr>
+                            <tr>
+                                <td>20220322</td>
+                                <td>헤럴드경제</td>
+                                <td>교육계, 미래산업으로 급부상한 '메타버스' 전문가 양성, 활용 주력 교육계, 미래산업으로 급부상한</td>
+                                <td>http://www.joongdo.com</td>
+                            </tr>
+                            <tr>
+                                <td>20220322</td>
+                                <td>헤럴드경제</td>
+                                <td>교육계, 미래산업으로 급부상한 '메타버스' 전문가 양성, 활용 주력 교육계, 미래산업으로 급부상한</td>
+                                <td>http://www.joongdo.com</td>
+                            </tr>
+                            <tr>
+                                <td>20220322</td>
+                                <td>헤럴드경제</td>
+                                <td>교육계, 미래산업으로 급부상한 '메타버스' 전문가 양성, 활용 주력 교육계, 미래산업으로 급부상한</td>
+                                <td>http://www.joongdo.commmmmmmmmmmm</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="inner_wrap2">
+                        <button class="con4_btn">
+                            <img src="./image/btn_icon.png" alt="">
+                            <p>리포트 다운로드</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="con_bottom">
+                <div class="inner_wrap">
+                    <h3>더 자세한 분석을 원한다면!</h3>
+                    <img src="./image/logo_en.png" alt="logo_en">
+                </div>
+            </div>
+
+        </main>
+        <footer>
+            <div class="inner_wrap">
+                <div class="text">
+                    <div>
+                        <p>상표 : 타이밍포올 주식회사 | 주소 : 경기도 성남시 분당구 돌마로 80 현대벤처빌 632</p>
+                        <p>사업자등록번호 : 715-87-2192 | 연락처 : 010-5598</p>
+                    </div>
+                    <div class="img">
+                        <img src="./image/footer_logo.png" alt="footer_logo">
+                    </div>
+                </div>
+                <p>Copyright-2021-timing4all.com.</p>
+            </div>
+        </footer>
+    </div>
+    <script src="./script/lineChart.js"></script>
+    <script src="./script/networkData.js"></script>
+    <script src="./script/networkGraph.js"></script>
+    <script src="./script/wordData.js"></script>
+    <script src="./script/wordCloud.js"></script>
+</body>
+</html>
