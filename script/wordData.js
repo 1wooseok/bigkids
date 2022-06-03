@@ -13,7 +13,7 @@ function fillColor(d, i) {
 }
 
 // List of words
-const min_font_size = 20;
+const min_font_size = 40;
 const max_font_size = 60;
 var myWords = [
   {
