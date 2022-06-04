@@ -15,6 +15,7 @@ function fillColor(d, i) {
 // List of words
 const min_font_size = 40;
 const max_font_size = 60;
+console.log(getRandomInt(min_font_size,max_font_size))
 var myWords = [
   {
     text: "포트나이트",

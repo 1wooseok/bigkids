@@ -19,11 +19,6 @@ const networkGraph = {
       return Object.create(d);
     });
 
-    const color = function (d) {
-      const scale = d3.scaleOrdinal(d3.schemeCategory10);
-      return scale(d.group);
-    };
-
     const fillCircle = (g) => {
       switch (g) {
         case "bad":
@@ -36,9 +31,6 @@ const networkGraph = {
           return "white";
       }
     };
-
-    // const WIDTH = 500;
-    // const HEIGHT = 500;
 
     const width = 600;
     const height = 600;

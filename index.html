@@ -75,6 +75,7 @@
                 <!-- 그래프2개 wrap-->
                 <div class="inner_wrap" style="display: flex;">
                     <!-- 워드 클라우드-->
+                    <link rel="stylesheet" href="./css/wordCloud.css">
                     <div id="word-cloud" style="flex: 1;"></div>
                     <!-- 네트워크 그래프-->
                     <link rel="stylesheet" href="./css/networkGraph.css">
@@ -100,40 +101,7 @@
                     <div class="lineChart_wrap">
                         <canvas id="myChart"></canvas>
                         <div class="chart-border"></div>
-                        <div class="xAxis">
-                            <div class="x-label-wrap">
-                                <div class="x-label">월</div>
-                                <div class="x-date-label">22.03.03</div>
-                            </div>
-                            <div class="x-label-wrap">
-                                <div class="x-label">화</div>
-                                <div class="x-date-label">22.03.03</div>
-                            </div>
-                            <div class="x-label-wrap">
-                                <div class="x-label">수</div>
-                                <div class="x-date-label">22.03.03</div>
-                            </div>
-                            <div class="x-label-wrap">
-                                <div class="x-label">목</div>
-                                <div class="x-date-label">22.03.03</div>
-                            </div>
-                            <div class="x-label-wrap">
-                                <div class="x-label">금</div>
-                                <div class="x-date-label">22.03.03</div>
-                            </div>
-                            <div class="x-label-wrap">
-                                <div class="x-label">토</div>
-                                <div class="x-date-label">22.03.03</div>
-                            </div>
-                            <div class="x-label-wrap">
-                                <div class="x-label">일</div>
-                                <div class="x-date-label">22.03.03</div>
-                            </div>
-                            <div class="x-label-wrap">
-                                <div class="x-label">월</div>
-                                <div class="x-date-label">22.03.03</div>
-                            </div>
-                        </div>
+                        <div class="xAxis"></div>
                     </div>
                 </div>
                 <!-- -->
@@ -222,6 +190,7 @@
             </div>
         </footer>
     </div>
+    <script src="./script/index.js"></script>
     <script src="./script/lineChart.js"></script>
     <script src="./script/networkData.js"></script>
     <script src="./script/networkGraph.js"></script>

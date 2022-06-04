@@ -21,13 +21,12 @@
 }
 
 .x-label-wrap {
-  font-size: 1.4em;
+  font-size: 1.5em;
   font-weight: bold;
   width: calc(100% / 8);
 }
 
 .x-label {
-  font-size: 1.4em;
   font-weight: bold;
 }
 
