@@ -3,7 +3,7 @@ const WINDOW_WIDTH = window.innerWidth;
 const WINDOW_HEIGHT = window.innerHeight;
 let width =
   WINDOW_WIDTH < 850
-    ? WINDOW_WIDTH
+    ? WINDOW_WIDTH * 1.3
     : WINDOW_WIDTH < 1500
     ? WINDOW_WIDTH / 2
     : WINDOW_WIDTH < 1800
@@ -11,7 +11,7 @@ let width =
     : WINDOW_WIDTH / 3;
 let height =
   WINDOW_WIDTH < 850
-    ? WINDOW_WIDTH
+    ? WINDOW_WIDTH * 1.3
     : WINDOW_WIDTH < 1500
     ? WINDOW_WIDTH / 2
     : WINDOW_WIDTH < 1800

@@ -11,11 +11,10 @@ async function getNetworkGraphData() {
 const networkGraph = {
   createGraph: async function () {
     // const NETWORK_DATA = await getNetworkGraphData();
-    const links = NETWORK_DATA.links.map((d) => {
+    const nodes = NETWORK_DATA.nodes.map((d) => {
       return Object.create(d);
     });
-
-    const nodes = NETWORK_DATA.nodes.map((d) => {
+    const links = myLinks.map((d) => {
       return Object.create(d);
     });
 
