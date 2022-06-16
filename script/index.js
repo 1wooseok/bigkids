@@ -1,5 +1,3 @@
-let DATA;
-
 const YOIL = ["월", "화", "수", "목", "금", "토", "일", "월"];
 
 const getXlabelElement = (yoil) => {
@@ -15,7 +13,9 @@ const renderXlabelElements = () => {
   xAxis.innerHTML = YOIL.map(getXlabelElement).join(" ");
 };
 
-window.onload = renderXlabelElements;
+window.onload = () => {
+  renderXlabelElements();
+};
 
 const getServerData = async () => {
   try {
@@ -31,4 +31,3 @@ const getServerData = async () => {
 };
 
 getServerData();
-console.log({DATA})
