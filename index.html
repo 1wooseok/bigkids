@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>빅키즈(BIG KIDS)</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/wordCloud.css">
+    <link rel="stylesheet" href="./css/networkGraph.css">
+    <link rel="stylesheet" href="./css/linechart.css">
     <!-- 선 그래프 cdn -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
@@ -50,9 +53,9 @@
         <main>
             <div class="con1">
                 <h3>오늘의 키워드</h3>
-                <div class="keyword">
-                    <div class="off_keyword">핑크퐁</div>
-                    <div class="arr"><img src="./image/next-2.png" alt="arr"></div>
+                <div class="keyword" >
+                    <div class="off_keyword prev" id="keyword_wrap">핑크퐁</div>
+                    <div class="arr prev"><img src="./image/next-2.png" alt="arr"></div>
                     <div class="on_keyword">로블록스</div>
                     <div class="arr"><img src="./image/next-2.png" alt="arr"></div>
                     <div class="off_keyword">환경오염</div>
@@ -72,13 +75,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- -->
+                <!-- Graph -->
                 <div class="inner_wrap" style="display: flex; margin-top: 10px;">
-                    <!-- 워드 클라우드-->
-                    <link rel="stylesheet" href="./css/wordCloud.css">
                     <div id="word-cloud" style="flex: 1;"></div>
-                    <!-- 네트워크 그래프-->
-                    <link rel="stylesheet" href="./css/networkGraph.css">
                     <div class="network-graph" style="flex: 1;">
                         <svg id="NETWORK_GRAPH"></svg>
                     </div>
@@ -95,8 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- 선 그래프 -->
-                <link rel="stylesheet" href="./css/linechart.css">
+                <!-- Chart -->
                 <div class="inner_wrap">
                     <div class="lineChart_wrap">
                         <canvas id="myChart"></canvas>
@@ -113,10 +111,8 @@
                         <p>이렇게 보면 어떨까?</p>
                         <img class="icon" src="./image/box_icon.png" alt="">
                         <div class="bottom_bar">
-
                         </div>
                     </div>
-
                     <table class="con4_table">
                         <thead>
                             <tr>
@@ -126,38 +122,7 @@
                                 <th>링크</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>20220322</td>
-                                <td>헤럴드경제</td>
-                                <td>교육계, 미래산업으로 급부상한 '메타버스' 전문가 양성, 활용 주력 교육계, 미래산업으로 급부상한</td>
-                                <td>http://www.joongdo.com</td>
-                            </tr>
-                            <tr>
-                                <td>20220322</td>
-                                <td>헤럴드경제</td>
-                                <td>교육계, 미래산업으로 급부상한 '메타버스' 전문가 양성, 활용 주력 교육계, 미래산업으로 급부상한</td>
-                                <td>http://www.joongdo.com</td>
-                            </tr>
-                            <tr>
-                                <td>20220322</td>
-                                <td>헤럴드경제</td>
-                                <td>교육계, 미래산업으로 급부상한 '메타버스' 전문가 양성, 활용 주력 교육계, 미래산업으로 급부상한</td>
-                                <td>http://www.joongdo.com</td>
-                            </tr>
-                            <tr>
-                                <td>20220322</td>
-                                <td>헤럴드경제</td>
-                                <td>교육계, 미래산업으로 급부상한 '메타버스' 전문가 양성, 활용 주력 교육계, 미래산업으로 급부상한</td>
-                                <td>http://www.joongdo.com</td>
-                            </tr>
-                            <tr>
-                                <td>20220322</td>
-                                <td>헤럴드경제</td>
-                                <td>교육계, 미래산업으로 급부상한 '메타버스' 전문가 양성, 활용 주력 교육계, 미래산업으로 급부상한</td>
-                                <td>http://www.joongdo.commmmmmmmmmmm</td>
-                            </tr>
-                        </tbody>
+                        <tbody id="news_table"></tbody>
                     </table>
                     <div class="inner_wrap2">
                         <button class="con4_btn">

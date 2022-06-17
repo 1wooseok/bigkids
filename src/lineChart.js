@@ -1,6 +1,6 @@
 import { renderXlabelElements } from "./utils.js";
 
-export function createLineChart(LINE_CHART_DATA) {
+export function renderLineChart(LINE_CHART_DATA) {
   const dates = LINE_CHART_DATA.map(l => l.date)
   const values = LINE_CHART_DATA.map(l => l.value)
 

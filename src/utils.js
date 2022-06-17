@@ -1,7 +1,7 @@
 export function generateLinksByNodes(NODES) {
   NODES = NODES.nodes;
   const links = [];
-  
+
   for (let i = 0; i < NODES.length; i++) {
     const { id, value } = NODES[i];
     for (let j = i; j < NODES.length; j++) {
@@ -13,16 +13,15 @@ export function generateLinksByNodes(NODES) {
       }
     }
   }
-  console.log(links)
   return links;
 }
 
-export const renderXlabelElements = (dates) => {
+export function renderXlabelElements(dates) {
   const xAxis = document.querySelector(".xAxis");
   xAxis.innerHTML = dates.map(getXlabelElement).join(" ");
-};
+}
 
-const getXlabelElement = (date) => {
+function getXlabelElement(date) {
   const yoil = getYoilByDate(new Date(date).getDay());
   return `
     <div class="x-label-wrap">
@@ -31,9 +30,9 @@ const getXlabelElement = (date) => {
     }">${yoil}</div>
     <div class="x-date-label">${date.split("-")[1]}.${date.split("-")[2]}</div>
     </div>`;
-};
+}
 
-const getYoilByDate = (num) => {
+function getYoilByDate(num) {
   switch (num) {
     case 0:
       return "일";
@@ -52,4 +51,16 @@ const getYoilByDate = (num) => {
     default:
       throw new Error(alert("날짜 에러"));
   }
-};
+}
+
+export function bindEvent() {
+  const keyword_wrap = document.getElementById("keyword_wrap");
+  keyword_wrap.addEventListener("click", (e) => {
+    console.log(e.target.className);
+    if (e.target.className.includes("prev")) {
+      console.log("1");
+      // refetch
+      // rerender
+    }
+  });
+}

@@ -1,4 +1,4 @@
-export function createNetworkGraph(NETWORK_DATA, LINKS) {
+export function renderNetworkGraph(NETWORK_DATA, LINKS) {
   const networkGraph = {
     createGraph: function () {
       const nodes = NETWORK_DATA.nodes.map((d) => {
@@ -61,7 +61,7 @@ export function createNetworkGraph(NETWORK_DATA, LINKS) {
         .each(function (d) {
           d3.select(this)
             .append("circle")
-            .attr("r", d.value * 8) // 
+            .attr("r", Math.min(d.value * 9, 30))// 
             .attr(
               "fill",
               d.id === center_word ? center_word_color : fillCircle(d.group)
@@ -73,7 +73,7 @@ export function createNetworkGraph(NETWORK_DATA, LINKS) {
             .text(d.id)
             .attr("dy", 6)
             .style("text-anchor", "middle")
-            .style("font-size", "0.8rem")
+            .style("font-size", '18px') // 12px'
             .style("font-weight", 800)
             .attr("class", "node-label");
         })
@@ -85,7 +85,6 @@ export function createNetworkGraph(NETWORK_DATA, LINKS) {
           .attr("y1", (d) => d.source.y)
           .attr("x2", (d) => d.target.x)
           .attr("y2", (d) => d.target.y);
-        //circle 노드에서 g 노드로 변경
         node.attr("transform", (d) => `translate(${d.x}, ${d.y})`);
       });
       return svg.node();
@@ -116,4 +115,15 @@ export function createNetworkGraph(NETWORK_DATA, LINKS) {
     },
   };
   networkGraph.createGraph();
+}
+
+
+const obj = {
+  keyword: {
+    prev: '핑크퐁',
+    today: '로블록스',
+    next: '환경오염',
+    startDate: '2022-03-21',
+    endDate: '2022-03-28'
+  }
 }

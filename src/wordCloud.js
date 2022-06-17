@@ -1,4 +1,4 @@
-export function createWordCloud(WORD_CLOUD_DATA) {
+export function renderWordCloud(WORD_CLOUD_DATA) {
   let margin = { top: 10, right: 10, bottom: 10, left: 10 };
   const WINDOW_WIDTH = window.innerWidth;
   let width =

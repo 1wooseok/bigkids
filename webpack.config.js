@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   mode: "development",
   entry: {
-    index: "./script/index.js",
+    index: "./src/index.js",
   },
   output: {
     path: path.resolve(__dirname, "public"),
@@ -34,6 +34,11 @@ module.exports = {
       template: 'index.html',
       filename: "index.html",
       chunks: ["index"],
+    }),
+    new HtmlWebpackPlugin({
+      template: 'video.html',
+      filename: "video.html",
+      chunks: ["video"],
     }),
   ],
 };
