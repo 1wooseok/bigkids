@@ -44,20 +44,20 @@ const SAMPLE = {
 };
 
 const myLinks = SAMPLE.return_object.nodes.map((info) => {
-  const { name, level, weight } = info;
+  const { name, level } = info;
   return {
     source: name,
     target: level,
-    value: weight,
   };
 });
 
-function generateLinksByNodes(DATA) {
-  return DATA.network.nodes.map((node) => {
+function generateLinksByNodes(NODES) {
+  return NODES.map((node) => {
     const { id, value } = node;
     return {
       soucre: id,
-      target: value,
+      target: value, 
     };
   });
 }
+console.log(myLinks)

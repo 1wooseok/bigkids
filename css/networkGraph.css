@@ -9,7 +9,7 @@
 }
 
 #NETWORK_GRAPH .g-holder {
-  transform: scale(3) translate(0px, 0px);
+  transform: translate(0px, 0px) scale(2); /* scale(1.2) */
   transform-origin: center;
   stroke-linecap: round;
 }

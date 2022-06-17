@@ -1,29 +1,31 @@
 .lineChart_wrap {
   margin: 2rem auto 0 auto;
-  width: 86%;
+  /* width: 86%; */
 }
 
 .chart-border {
   position: relative;
-  top: -0.9em;
+  top: -1.6em;
 
-  width: 100%;
+  /* width: 100%; */
+  width: 90%;
   height: 1px;
   border-top: 1px solid black;
+  z-index: -1;
 }
 
 .xAxis {
   display: flex;
   justify-content: first baseline;
   width: 100%;
-  text-align: center;
-  transform: scale(1.12);
+  /* text-align: center; */
+  transform: translateX(-0.5%);
 }
 
 .x-label-wrap {
   font-size: 1.5em;
   font-weight: bold;
-  width: calc(100% / 8);
+  width: calc(100% / 7);
 }
 
 .x-label {
@@ -46,14 +48,14 @@
   color: black;
 }
 
-.x-label-wrap:nth-child(6n) {
-  color: #396ee2;
+.x-label-wrap:first-child {
+  color: black;
 }
 
-.x-label-wrap:nth-child(6n + 1) {
+.__sun {
   color: #d13e3e;
 }
 
-.x-label-wrap:first-child {
-  color: black;
+.__sat {
+  color: #396ee2;
 }
