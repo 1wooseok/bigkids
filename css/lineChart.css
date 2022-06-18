@@ -1,14 +1,20 @@
+/* canvas {
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+} */
+
 .lineChart_wrap {
-  margin: 2rem auto 0 auto;
-  /* width: 86%; */
+  margin: 2.5rem auto 0 auto;
 }
+
 
 .chart-border {
   position: relative;
-  top: -1.6em;
+  top: -2rem;
 
-  /* width: 100%; */
-  width: 90%;
+  width: 100%;
   height: 1px;
   border-top: 1px solid black;
   z-index: -1;
@@ -18,8 +24,7 @@
   display: flex;
   justify-content: first baseline;
   width: 100%;
-  /* text-align: center; */
-  transform: translateX(-0.5%);
+  text-align: center;
 }
 
 .x-label-wrap {

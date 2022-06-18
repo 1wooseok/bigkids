@@ -5,11 +5,22 @@ import { renderLineChart } from "./lineChart.js";
 import { renderNews } from "./news.js";
 import { bindEvent, generateLinksByNodes } from "./utils.js";
 
-window.onload = init;
+let state = {
+  date: "2022-05-06", // new Date().toISOString().substring(0, 10)
+};
 
-async function init() {
+export const setState = (newState) => {
+  const { date } = state;
+  state = {
+    ...state,
+    ...newState,
+  };
+  render(date);
+};
+
+export async function render(date=null) {
   const BIG_KIDS_DATA = await fetchBigKidsData("2022-05-06");
-
+  console.log({BIG_KIDS_DATA})
   const {
     wordcloud: WORD_CLOUD_DATA,
     network: NETWORK_DATA,
@@ -23,19 +34,5 @@ async function init() {
   renderNews(NEWS_DATA);
 }
 
-// bindEvent();
-const keyword_wrap = document.getElementById("keyword_wrap");
-// keyword_wrap.addEventListener("click", (e) => {
-//   console.log(e.target.className);
-//   if (e.target.className.includes("prev")) {
-//     console.log("1");
-//     // refetch
-//     // rerender
-//   }
-// });
-
-keyword_wrap.addEventListener("click", e => console.log(e.target));
-  
-function handleClick(e) {
-  console.log(e.target);
-}
+window.onload = render;
+bindEvent();

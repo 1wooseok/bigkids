@@ -67,7 +67,8 @@ header .inner_wrap {
     background-color: #f8f8fa;
     text-align: center;
     position: relative;
-    z-index: -2;
+    /* 클릭 이벤트 때문에 -2 에서 0으로 변경 */ 
+    z-index: 0;
 
 }
 

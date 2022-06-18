@@ -53,14 +53,12 @@ function getYoilByDate(num) {
   }
 }
 
-export function bindEvent() {
+export function bindEvent(state, setState) {
   const keyword_wrap = document.getElementById("keyword_wrap");
   keyword_wrap.addEventListener("click", (e) => {
-    console.log(e.target.className);
     if (e.target.className.includes("prev")) {
-      console.log("1");
-      // refetch
-      // rerender
+      const [yy, mm, dd] = state.split("-").map((x) => parseInt(x));
+      setState({ date: new Date(yy, mm-1, dd) });
     }
   });
 }

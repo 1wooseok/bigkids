@@ -7,7 +7,7 @@ export function renderLineChart(LINE_CHART_DATA) {
   const canvas = document.getElementById("myChart");
   canvas.width = window.innerWidth * 0.5;
 
-  const labels = ["", "", "", "", "", "", "", ""];
+  const labels = ["", "", "", "", "", "", ""];
 
   const data = {
     labels: labels,
