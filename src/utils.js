@@ -32,6 +32,29 @@ function getXlabelElement(date) {
     </div>`;
 }
 
+
+export function bindEvent(state, setState) {
+  const [yy, mm, dd] = state.split("-").map((x) => parseInt(x));
+
+  const keyword_wrap = document.getElementById("keyword_wrap");
+  keyword_wrap.addEventListener("click", debounce((e) => {
+    if (e.target.className.includes("prev")) {
+      setState({ date: new Date(yy, mm - 1, dd) });
+    }
+  }, 100));
+}
+
+function debounce(callback, delay = 100) {
+  let timer;
+  return function (...args) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      timer = null;
+      callback(...args);
+    }, delay);
+  };
+}
+
 function getYoilByDate(num) {
   switch (num) {
     case 0:
@@ -51,14 +74,4 @@ function getYoilByDate(num) {
     default:
       throw new Error(alert("날짜 에러"));
   }
-}
-
-export function bindEvent(state, setState) {
-  const keyword_wrap = document.getElementById("keyword_wrap");
-  keyword_wrap.addEventListener("click", (e) => {
-    if (e.target.className.includes("prev")) {
-      const [yy, mm, dd] = state.split("-").map((x) => parseInt(x));
-      setState({ date: new Date(yy, mm-1, dd) });
-    }
-  });
 }

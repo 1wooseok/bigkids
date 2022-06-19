@@ -18,9 +18,9 @@ export const setState = (newState) => {
   render(date);
 };
 
-export async function render(date=null) {
+export async function render(date = null) {
   const BIG_KIDS_DATA = await fetchBigKidsData("2022-05-06");
-  console.log({BIG_KIDS_DATA})
+  console.log({ BIG_KIDS_DATA });
   const {
     wordcloud: WORD_CLOUD_DATA,
     network: NETWORK_DATA,
@@ -36,3 +36,13 @@ export async function render(date=null) {
 
 window.onload = render;
 bindEvent();
+
+function renderPeriod(state) {
+  const period = document.getElementById("period");
+  const [yy, mm, dd] = state.split("-").map((x) => parseInt(x));
+  period.textContent = `기간 : ${new Date(yy, mm - 1, dd)
+    .toLocaleDateString()
+    .slice(0, -1)} ~ ${new Date(yy, mm - 1, dd + 6)
+    .toLocaleDateString()
+    .slice(0, -1)}`;
+}
