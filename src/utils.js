@@ -34,7 +34,7 @@ function getXlabelElement(date) {
 
 
 export function bindEvent(state, setState) {
-  const [yy, mm, dd] = state.split("-").map((x) => parseInt(x));
+  const [yy, mm, dd] = state.date.split("-").map((x) => parseInt(x));
 
   const keyword_wrap = document.getElementById("keyword_wrap");
   keyword_wrap.addEventListener("click", debounce((e) => {
