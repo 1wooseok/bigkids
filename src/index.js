@@ -1,4 +1,5 @@
 import { fetchBigKidsData } from "./api.js";
+import { renderKeyword } from "./keyword.js"
 import { renderNewWordCloud } from "./newWordCloud.js";
 import { renderNetworkGraph } from "./networkGraph.js";
 import { renderLineChart } from "./lineChart.js";
@@ -6,7 +7,8 @@ import { renderNews } from "./news.js";
 import { bindEvent, generateLinksByNodes } from "./utils.js";
 
 let state = {
-  date: "2022-05-06", // new Date().toISOString().substring(0, 10)
+  date: "2022-05-06", 
+  // date: new Date().toISOString().substring(0, 10),
 };
 
 export const setState = (newState) => {
@@ -28,7 +30,6 @@ export async function render(date = null) {
     news: NEWS_DATA,
     keyword: KEYWORD_DATA
   } = BIG_KIDS_DATA;
-
   
   renderKeyword(KEYWORD_DATA);
   renderNewWordCloud(WORD_CLOUD_DATA);
@@ -37,25 +38,6 @@ export async function render(date = null) {
   renderNews(NEWS_DATA);
 }
 
-window.onload = render;
+render();
 bindEvent(state, setState);
 
-function renderKeyword(KEYWORD_DATA) {
-  const { next, today, prev } = KEYWORD_DATA;
-
-  const prev_keyword = document.getElementById('prev_keyword');
-  const today_keyword = document.getElementById('today_keyword');
-  const next_keyword = document.getElementById('next_keyword');
-  const period = document.getElementById("period");
-
-  prev_keyword.textContent = prev.word;
-  today_keyword.textContent = today.word;
-  next_keyword.textContent = next.word;
-
-  const [yy, mm, dd] = today.date.split("-").map((x) => parseInt(x));
-  period.textContent = `기간 : ${new Date(yy, mm - 1, dd)
-    .toLocaleDateString()
-    .slice(0, -1)} ~ ${new Date(yy, mm - 1, dd + 6)
-    .toLocaleDateString()
-    .slice(0, -1)}`;
-}

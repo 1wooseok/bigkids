@@ -1,4 +1,5 @@
 export function renderNetworkGraph(NETWORK_DATA, LINKS) {
+  document.getElementById('#NETWORK_GRAPH').innerHTML = '';
   const networkGraph = {
     createGraph: function () {
       const nodes = NETWORK_DATA.nodes.map((d) => {
@@ -115,15 +116,4 @@ export function renderNetworkGraph(NETWORK_DATA, LINKS) {
     },
   };
   networkGraph.createGraph();
-}
-
-
-const obj = {
-  keyword: {
-    prev: '핑크퐁',
-    today: '로블록스',
-    next: '환경오염',
-    startDate: '2022-03-21',
-    endDate: '2022-03-28'
-  }
 }

@@ -1,4 +1,5 @@
 export function renderNewWordCloud(WORD_CLOUD_DATA) {
+  document.getElementById('word-cloud').innerHTML = ''; // init
   const WINDOW_WIDTH = window.innerWidth;
   let width =
     WINDOW_WIDTH < 850

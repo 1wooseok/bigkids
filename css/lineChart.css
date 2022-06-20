@@ -6,13 +6,14 @@
 } */
 
 .lineChart_wrap {
+  position: relative;
   margin: 2.5rem auto 0 auto;
 }
 
 
 .chart-border {
-  position: relative;
-  top: -2rem;
+  position: absolute;
+  bottom: 4.4em;
 
   width: 100%;
   height: 1px;
@@ -23,8 +24,6 @@
 .xAxis {
   display: flex;
   justify-content: first baseline;
-  width: 100%;
-  text-align: center;
 }
 
 .x-label-wrap {
@@ -34,6 +33,7 @@
 }
 
 .x-label {
+  text-align: center;
   font-weight: bold;
 }
 
