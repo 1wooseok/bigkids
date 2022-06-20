@@ -22,8 +22,8 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
         }
       };
 
-      const width = 1000;
-      const height = 1000;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
       const center_word = "생태계";
       const center_word_color = "#FF8E7E";
 

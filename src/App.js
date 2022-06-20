@@ -17,7 +17,7 @@ export default class App extends Component {
       date: new Date().toISOString().substring(0, 10),
       BIGKIDS_DATA: {},
     };
-    this.fetchData(); // init
+    this.fetchData(this.state.date); // init
   }
   mounted() {
     const { keyword, lineChart, news } = this.state.BIGKIDS_DATA;
@@ -28,7 +28,9 @@ export default class App extends Component {
     const newsTable_wrap = document.getElementById("news_table");
 
     new Keyword(keyword_wrap, {
+      date: this.state.date,
       KEYWORD_DATA: keyword,
+      fetchData: this.fetchData.bind(this)
     });
     new WordCloud(wordCloud_wrap, {
       renderWordCloud: this.renderWordCloud.bind(this),
@@ -50,20 +52,20 @@ export default class App extends Component {
     const { wordCloud } = this.state.BIGKIDS_DATA;
     createWordCloud(wordCloud);
   }
-
+  
   renderNetworkGraph() {
     const { network } = this.state.BIGKIDS_DATA;
     const links = generateLinksByNodes(network);
     createNetworkGraph(network, links);
   }
-
+  
   renderLineChart() {
-    const { lineChart } = this.state.BIGKIDS_DATA;
-    createLineChart(lineChart);
+    const { linechart } = this.state.BIGKIDS_DATA;
+    createLineChart(linechart);
   }
 
-  async fetchData() {
-    const res = await fetchBigKidsData();
-    this.setState({ ...this.state, BIGKIDS_DATA: res });
+  async fetchData(date) {
+    const res = await fetchBigKidsData(date);
+    this.setState({ date, BIGKIDS_DATA: res });
   }
 }

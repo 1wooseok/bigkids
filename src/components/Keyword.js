@@ -1,12 +1,6 @@
 import Component from "./Component.js";
 
 export default class Keyword extends Component {
-  // constructor(render, props) {
-  //   super(render, props);
-  //   this.render();
-  //   this.props = props;
-  // }
-
   template() {
     if (!this.props?.KEYWORD_DATA) {
       return `
@@ -45,7 +39,7 @@ export default class Keyword extends Component {
     this.target.addEventListener("click", (e) => {
       if (e.target.classList.contains("prev")) {
         const [yy, mm, dd] = this.props.date.split("-").map((x) => parseInt(x));
-        this.setState({ date: new Date(yy, mm - 1, dd) });
+        this.props.fetchData(new Date(yy, mm - 1, dd));
       }
     });
   }

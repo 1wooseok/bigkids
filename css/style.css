@@ -12,6 +12,7 @@ li , ul {list-style: none;}
 html {font-size: 16px; position: relative; scroll-behavior: smooth; }
 .inner_wrap {max-width: 1440px; margin: 0 auto; padding: 0 80px; }
 .inner_wrap2 {width: 95%; display: flex; justify-content: flex-end; align-items: center;}
+.words_wrap {display: flex; margin-top: 10px;}
 
 .top {position: fixed; right: 5%; bottom: 10%;}
 header {
@@ -524,6 +525,7 @@ header {
     header .inner_wrap {flex-direction: column;}
     .inner_wrap {max-width: 500px; margin: 0 auto; padding: 0 30px; }
     .inner_wrap2 {width: 95%; display: flex; justify-content: center; align-items: center;}
+    .words_wrap {display: block;}
 
     .con1 > h3::after {
         position: absolute;

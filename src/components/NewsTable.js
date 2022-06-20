@@ -1,12 +1,6 @@
 import Component from "./Component.js";
 
 export default class NewsTable extends Component {
-  // constructor(render, props) {
-  //   super(render, props);
-  //   this.render();
-  //   this.props = props;
-  // }
-
   template() {
     const { NEWS_DATA } = this.props;
     if (!NEWS_DATA) return ``;

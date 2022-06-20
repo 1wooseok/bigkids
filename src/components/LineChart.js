@@ -15,10 +15,7 @@ export default class WordCloud extends Component {
     const week = LINE_CHART_DATA?.map((l) => l.date);
 
     return `
-      <canvas id="myChart">
-        <div class="test"></div>
-      </canvas>
-      <div class="chart-border"></div>
+      
       <div class="xAxis">${week.map(getXlabelElement).join(" ")}</div>
     `;
   }
@@ -27,3 +24,8 @@ export default class WordCloud extends Component {
     this.props.renderLineChart();
   }
 }
+
+{/* <canvas id="myChart">
+        <div class="test"></div>
+      </canvas>
+      <div class="chart-border"></div> */}

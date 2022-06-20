@@ -1,0 +1,215 @@
+{
+    "keyword": {
+        "prev": {
+            "date": "2022-06-04",
+            "word": "마법의 성"
+        },
+        "today": {
+            "date": "2022-06-05",
+            "word": "로블록스"
+        },
+        "next": {
+            "date": "2022-06-06",
+            "word": "아구찜"
+        }
+    },
+    "wordCloud": [
+        {
+            "text": "포트나이트",
+            "size": 30,
+            "color": "black"
+        },
+        {
+            "text": "포트",
+            "size": 20,
+            "color": "black"
+        },
+        {
+            "text": "코로나",
+            "size": 10,
+            "color": "black"
+        },
+        {
+            "text": "치즈",
+            "size": 50,
+            "color": "black"
+        },
+        {
+            "text": "애플",
+            "size": 20,
+            "color": "black"
+        },
+        {
+            "text": "테슬라",
+            "size": 10,
+            "color": "black"
+        }
+    ],
+    "network": {
+        "nodes": [
+            {
+                "id": "로블록스",
+                "value": 5,
+                "group": null
+            },
+            {
+                "id": "메타버스",
+                "value": 3,
+                "group": null
+            },
+            {
+                "id": "아바타",
+                "value": 3,
+                "group": null
+            },
+            {
+                "id": "애플",
+                "value": 3,
+                "group": null
+            },
+            {
+                "id": "미국",
+                "value": 3,
+                "group": null
+            },
+            {
+                "id": "CEO",
+                "value": 3,
+                "group": null
+            }
+        ],
+        "links": [
+            {
+                "source": "로블록스",
+                "target": "아바타",
+                "value": 2
+            },
+            {
+                "source": "로블록스",
+                "target": "메타버스",
+                "value": 2
+            },
+            {
+                "source": "로블록스",
+                "target": "애플",
+                "value": 2
+            },
+            {
+                "source": "로블록스",
+                "target": "미국",
+                "value": 2
+            },
+            {
+                "source": "로블록스",
+                "target": "CEO",
+                "value": 2
+            },
+            {
+                "source": "아바타",
+                "target": "로블록스",
+                "value": 2
+            },
+            {
+                "source": "아바타",
+                "target": "메타버스",
+                "value": 2
+            },
+            {
+                "source": "메타버스",
+                "target": "아바타",
+                "value": 2
+            },
+            {
+                "source": "메타버스",
+                "target": "로블록스",
+                "value": 2
+            },
+            {
+                "source": "메타버스",
+                "target": "애플",
+                "value": 2
+            },
+            {
+                "source": "애플",
+                "target": "메타버스",
+                "value": 2
+            },
+            {
+                "source": "애플",
+                "target": "로블록스",
+                "value": 2
+            },
+            {
+                "source": "미국",
+                "target": "로블록스",
+                "value": 2
+            },
+            {
+                "source": "미국",
+                "target": "메타버스",
+                "value": 2
+            },
+            {
+                "source": "CEO",
+                "target": "로블록스",
+                "value": 2
+            }
+        ]
+    },
+    "lineChart": [
+        {
+            "date": "2022-06-05",
+            "value": 1
+        },
+        {
+            "date": "2022-06-05",
+            "value": 17
+        },
+        {
+            "date": "2022-06-05",
+            "value": 12
+        },
+        {
+            "date": "2022-06-05",
+            "value": 15
+        },
+        {
+            "date": "2022-06-05",
+            "value": 1
+        },
+        {
+            "date": "2022-06-05",
+            "value": 10
+        },
+        {
+            "date": "2022-06-05",
+            "value": 13
+        }
+    ],
+    "news": [
+        {
+            "date": "20220322",
+            "media": "헤럴드경제",
+            "title": "교육계, 미래산업으로",
+            "link": "http://www.joongdo.com"
+        },
+        {
+            "date": "20220322",
+            "media": "헤럴드경제",
+            "title": "교육계, 미래산업으로",
+            "link": "http://www.joongdo.com"
+        },
+        {
+            "date": "20220322",
+            "media": "헤럴드경제",
+            "title": "교육계, 미래산업으로",
+            "link": "http://www.joongdo.com"
+        },
+        {
+            "date": "20220322",
+            "media": "헤럴드경제",
+            "title": "교육계, 미래산업으로",
+            "link": "http://www.joongdo.com"
+        }
+    ]
+}

@@ -1,5 +1,8 @@
 export default function renderLineChart(LINE_CHART_DATA) {
   if (!LINE_CHART_DATA) return null;
+  const myChart = new Chart(document.getElementById("myChart"));
+  myChart.destroy();
+  
   const canvas = document.getElementById("myChart");
   canvas.width = window.innerWidth * 0.5;
 
@@ -49,6 +52,5 @@ export default function renderLineChart(LINE_CHART_DATA) {
   Chart.defaults.font.family = "NanumSquareRound";
   Chart.defaults.font.size = 20;
 
-  const myChart = new Chart(document.getElementById("myChart"), config);
-  return myChart;
+  new Chart(document.getElementById("myChart"), config);
 }
