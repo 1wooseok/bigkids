@@ -1,4 +1,5 @@
 export function generateLinksByNodes(NODES) {
+  console.log({NODES})
   NODES = NODES.nodes;
   const links = [];
 

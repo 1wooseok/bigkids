@@ -1,15 +1,6 @@
-export function renderNewWordCloud(WORD_CLOUD_DATA) {
-  document.getElementById("word-cloud").innerHTML = ""; // init
-  const WINDOW_WIDTH = window.innerWidth;
-  let width =
-    WINDOW_WIDTH < 850
-      ? WINDOW_WIDTH * 1.3
-      : WINDOW_WIDTH < 1500
-      ? WINDOW_WIDTH / 2
-      : WINDOW_WIDTH < 1800
-      ? WINDOW_WIDTH / 2.5
-      : WINDOW_WIDTH / 3;
-
+export default function createWordCloud(WORD_CLOUD_DATA) {
+  if (!WORD_CLOUD_DATA) return null;
+  const width = window.innerWidth;
   d3.layout
     .cloud()
     .size([width, width])
@@ -43,3 +34,12 @@ export function renderNewWordCloud(WORD_CLOUD_DATA) {
       .text((d) => d.text);
   }
 }
+
+// let width =
+//   WINDOW_WIDTH < 850
+//     ? WINDOW_WIDTH * 1.3
+//     : WINDOW_WIDTH < 1500
+//     ? WINDOW_WIDTH / 2
+//     : WINDOW_WIDTH < 1800
+//     ? WINDOW_WIDTH / 2.5
+//     : WINDOW_WIDTH / 3;

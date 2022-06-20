@@ -70,9 +70,7 @@
                         <img class="cr" src="./image/cr-1.png" alt="cr">
                         <p>어떤 내용이 있을까?</p>
                         <img class="icon" src="./image/box_icon.png" alt="">
-                        <div class="bottom_bar">
-
-                        </div>
+                        <div class="bottom_bar"></div>
                     </div>
                 </div>
                 <!-- Graph -->
@@ -96,8 +94,10 @@
                 </div>
                 <!-- Chart -->
                 <div class="inner_wrap">
-                    <div class="lineChart_wrap">
-                        <canvas id="myChart"><div class="test"></div></canvas>
+                    <div class="lineChart_wrap" id="lineChart_wrap">
+                        <canvas id="myChart">
+                            <div class="test"></div>
+                        </canvas>
                         <div class="chart-border"></div>
                         <div class="xAxis"></div>
                     </div>
@@ -162,13 +162,16 @@
             </div>
         </footer>
     </div>
+    <!-- Component -->
+    <script type="module" src="./src/components/index.js"></script>
+
     <!-- <script type="module" src="./src/index.js"></script> -->
     
-    <script src="./script/index.js"></script>
+    <!-- <script src="./script/index.js"></script>
     <script src="./script/lineChart.js"></script>
     <script src="./script/networkData.js"></script>
     <script src="./script/networkGraph.js"></script>
     <script src="./script/wordData.js"></script>
-    <script src="./script/wordCloud.js"></script>
+    <script src="./script/wordCloud.js"></script> -->
 </body>
 </html>
