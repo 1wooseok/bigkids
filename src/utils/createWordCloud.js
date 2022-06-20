@@ -23,13 +23,14 @@ export default function createWordCloud(WORD_CLOUD_DATA) {
       .append("svg")
       .attr("viewBox", `0 0 ${width * 1.2} ${width * 1.2}`)
       .append("g")
-      .attr("transform", "translate(300,300)")
+      // .attr("transform", "translate(300,300)")
       .selectAll("text")
       .data(words)
       .enter()
       .append("text")
       .style("font-size", (d) => {
         if (window.innerWidth < 580) {
+          // return Number(d.size) < 10 ? `${d.size*6}px` : `${d.size}px`;
           return `${d.size}px`;
         } else {
           return `${d.size*2}px`;
