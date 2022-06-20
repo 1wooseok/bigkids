@@ -23,7 +23,7 @@ export default function createWordCloud(WORD_CLOUD_DATA) {
       .append("svg")
       .attr("viewBox", `0 0 ${width * 1.2} ${width * 1.2}`)
       .append("g")
-      // .attr("transform", "translate(300,300)")
+      .attr("transform", `translate(${width/2}, ${width/2})`) // 300, 300
       .selectAll("text")
       .data(words)
       .enter()

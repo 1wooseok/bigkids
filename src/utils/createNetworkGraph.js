@@ -48,7 +48,7 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
 
       const svg = d3
         .select("#NETWORK_GRAPH")
-        .attr("viewBox", `0 ${-(width/6)} ${width * 1.2} ${width * 1.2}`)
+        .attr("viewBox", `0 0 ${width} ${width * 1.2}`)
       const gHolder = svg.append("g").attr("class", "g-holder");
       const link = gHolder
         .append("g")
