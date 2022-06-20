@@ -20,10 +20,10 @@ export default class App extends Component {
     this.fetchData(this.state.date); // init
   }
   mounted() {
-    const { keyword, lineChart, news } = this.state.BIGKIDS_DATA;
+    const { keyword, linechart, news } = this.state.BIGKIDS_DATA;
     const keyword_wrap = document.getElementById("keyword_wrap");
-    const wordCloud_wrap = document.getElementById("word-cloud");
-    const networkGraph_wrap = document.getElementById("NETWORK_GRAPH");
+    const wordCloud_wrap = document.getElementById("word_cloud");
+    const networkGraph_wrap = document.getElementById("network_wrap");
     const lineChart_wrap = document.getElementById("lineChart_wrap");
     const newsTable_wrap = document.getElementById("news_table");
 
@@ -39,7 +39,7 @@ export default class App extends Component {
       renderNetworkGraph: this.renderNetworkGraph.bind(this),
     });
     new LineChart(lineChart_wrap, {
-      LINE_CHART_DATA: lineChart,
+      LINE_CHART_DATA: linechart,
       renderLineChart: this.renderLineChart.bind(this),
     });
     new NewsTable(newsTable_wrap, {
@@ -49,8 +49,8 @@ export default class App extends Component {
 
   // method
   renderWordCloud() {
-    const { wordCloud } = this.state.BIGKIDS_DATA;
-    createWordCloud(wordCloud);
+    const { wordcloud } = this.state.BIGKIDS_DATA;
+    createWordCloud(wordcloud);
   }
   
   renderNetworkGraph() {
@@ -61,7 +61,7 @@ export default class App extends Component {
   
   renderLineChart() {
     const { linechart } = this.state.BIGKIDS_DATA;
-    createLineChart(linechart);
+    return createLineChart(linechart);
   }
 
   async fetchData(date) {

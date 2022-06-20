@@ -1,12 +1,9 @@
 import Component from "./Component.js";
 
 export default class WordCloud extends Component {
-  // constructor(render, props) {
-  //   super(render, props);
-  //   this.render();    
-  //   this.props = props;
-  // }
-
+  template() { 
+    return `<div id='WORD_CLOUD'></div>`;
+  }
   mounted() {
     this.props.renderWordCloud();
   }

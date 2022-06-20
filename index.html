@@ -75,9 +75,9 @@
                 </div>
                 <!-- Graph -->
                 <div class="inner_wrap words_wrap">
-                    <div id="word-cloud" style="flex: 1;"></div>
-                    <div class="network-graph" style="flex: 1;">
-                        <svg id="NETWORK_GRAPH"></svg>
+                    <div id="word_cloud" style="flex: 1;"></div>
+                    <div id="network_wrap" class="network-graph" style="flex: 1;">
+                        <!-- <svg id="NETWORK_GRAPH"></svg> -->
                     </div>
                 </div>
                 <!-- -->
@@ -95,10 +95,7 @@
                 <!-- Chart -->
                 <div class="inner_wrap">
                     <div class="lineChart_wrap" id="lineChart_wrap">
-                        <canvas id="myChart">
-                            <div class="test"></div>
-                        </canvas>
-                        <div class="chart-border"></div>
+                        <canvas id="myChart"></canvas>
                         <div class="xAxis"></div>
                     </div>
                 </div>
@@ -162,16 +159,7 @@
             </div>
         </footer>
     </div>
-    <!-- Component -->
     <script type="module" src="./src/main.js"></script>
-
     <!-- <script type="module" src="./src/index.js"></script> -->
-    
-    <!-- <script src="./script/index.js"></script>
-    <script src="./script/lineChart.js"></script>
-    <script src="./script/networkData.js"></script>
-    <script src="./script/networkGraph.js"></script>
-    <script src="./script/wordData.js"></script>
-    <script src="./script/wordCloud.js"></script> -->
 </body>
 </html>

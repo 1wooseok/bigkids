@@ -23,9 +23,15 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
       };
 
       const width = window.innerWidth;
-      const height = window.innerHeight;
-      const center_word = "생태계";
+      const center_word = "";
       const center_word_color = "#FF8E7E";
+
+      let viewBoxX = -(width * 0.5);
+      let viewBoxY = -(width * 0.5);
+      if (window.innerWidth < 580) {
+        viewBoxX = -(width * 0.8);
+        viewBoxY = -(width * 1.2);
+      } 
 
       const simulation = d3
         .forceSimulation(nodes)
@@ -34,7 +40,7 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
           d3.forceLink(links).id((d) => d.id)
         )
         .force("charge", d3.forceManyBody().strength(-100))
-        .force("center", d3.forceCenter(width / 2, height / 1.5))
+        .force("center", d3.forceCenter(width / 2, width / 2))
         .force(
           "collide",
           d3.forceCollide().radius((d) => d.value * 15)
@@ -42,7 +48,7 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
 
       const svg = d3
         .select("#NETWORK_GRAPH")
-        .attr("viewBox", [width / 8, height / 4, width, height]);
+        .attr("viewBox", `0 ${-(width/6)} ${width * 1.2} ${width * 1.2}`)
       const gHolder = svg.append("g").attr("class", "g-holder");
       const link = gHolder
         .append("g")

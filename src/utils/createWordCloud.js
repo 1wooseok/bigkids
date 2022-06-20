@@ -19,16 +19,22 @@ export default function createWordCloud(WORD_CLOUD_DATA) {
     .start();
 
   function draw(words) {
-    d3.select("#word-cloud")
+    d3.select("#WORD_CLOUD")
       .append("svg")
-      .attr("viewBox", `50 5 ${width * 1.2} ${width * 1.2}`)
+      .attr("viewBox", `0 0 ${width * 1.2} ${width * 1.2}`)
       .append("g")
       .attr("transform", "translate(300,300)")
       .selectAll("text")
       .data(words)
       .enter()
       .append("text")
-      .style("font-size", (d) => `${d.size}px`)
+      .style("font-size", (d) => {
+        if (window.innerWidth < 580) {
+          return `${d.size}px`;
+        } else {
+          return `${d.size*2}px`;
+        }
+      })
       .style("fill", (d) => d.color)
       .attr("text-anchor", "middle")
       .attr("transform", (d) => `translate(${[d.x, d.y]}) rotate(${d.rotate})`)

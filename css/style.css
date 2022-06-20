@@ -516,7 +516,12 @@ header {
     color: rgb(175, 175, 175);
 }
 
-
+/* Line Chart */
+#myChart {
+    z-index: 0;
+    border-bottom: 3px solid #ccc;
+    padding: 0 5rem;
+  }
 
 
 @media (max-width: 580px) {
@@ -612,6 +617,11 @@ header {
         height: 44px;
     }
 
+    #myChart {
+        z-index: 0;
+        border-bottom: 3px solid #ccc;
+        padding: 0 1.5rem;
+      }
 }
 
 @media (max-width: 440px) {

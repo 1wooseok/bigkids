@@ -1,11 +1,5 @@
 export default function renderLineChart(LINE_CHART_DATA) {
   if (!LINE_CHART_DATA) return null;
-  const myChart = new Chart(document.getElementById("myChart"));
-  myChart.destroy();
-  
-  const canvas = document.getElementById("myChart");
-  canvas.width = window.innerWidth * 0.5;
-
   const labels = ["", "", "", "", "", "", ""];
 
   const data = {
@@ -14,8 +8,8 @@ export default function renderLineChart(LINE_CHART_DATA) {
       {
         label: "  조회수 ",
         data: LINE_CHART_DATA.map((l) => l.value),
-        borderColor: "skyblue",
-        backgroundColor: "skyblue",
+        borderColor: "#b8e4ff",
+        backgroundColor: "#b8e4ff",
         borderJoinStyle: "round",
         tension: 0.1,
         pointBorderWidth: 10,
@@ -52,5 +46,14 @@ export default function renderLineChart(LINE_CHART_DATA) {
   Chart.defaults.font.family = "NanumSquareRound";
   Chart.defaults.font.size = 20;
 
-  new Chart(document.getElementById("myChart"), config);
+  const myChart = new Chart(document.getElementById("myChart"), config);
+  return myChart
+}
+
+export function updateLineChart(myLineChart, LINE_CHART_DATA) {
+  if (!LINE_CHART_DATA || !myLineChart) return null;
+  console.log('before', myLineChart);
+  myLineChart.datasets = LINE_CHART_DATA.map((x) => x.value); // Would update the first dataset's value of 'March' to be 50
+  console.log('After', myLineChart);
+  myLineChart.update();
 }
