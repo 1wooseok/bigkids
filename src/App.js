@@ -7,8 +7,9 @@ import NewsTable from "./components/NewsTable.js";
 
 import createWordCloud from "./utils/createWordCloud.js";
 import createNetworkGraph from "./utils/createNetworkGraph.js";
-import createLineChart from "./utils/createLineChart.js"
+import createLineChart from "./utils/createLineChart.js";
 import { generateLinksByNodes } from "./utils/utils.js";
+import { fetchBigKidsData } from "./api.js";
 
 export default class App extends Component {
   setup() {
@@ -16,6 +17,9 @@ export default class App extends Component {
       date: new Date().toISOString().substring(0, 10),
       BIGKIDS_DATA: {},
     };
+    this.fetchData(); // init
+  }
+  mounted() {
     const { keyword, lineChart, news } = this.state.BIGKIDS_DATA;
     const keyword_wrap = document.getElementById("keyword_wrap");
     const wordCloud_wrap = document.getElementById("word-cloud");
@@ -40,10 +44,11 @@ export default class App extends Component {
       NEWS_DATA: news,
     });
   }
+
   // method
   renderWordCloud() {
-    const { wordcloud } = this.state.BIGKIDS_DATA;
-    createWordCloud(wordcloud);
+    const { wordCloud } = this.state.BIGKIDS_DATA;
+    createWordCloud(wordCloud);
   }
 
   renderNetworkGraph() {
@@ -55,5 +60,10 @@ export default class App extends Component {
   renderLineChart() {
     const { lineChart } = this.state.BIGKIDS_DATA;
     createLineChart(lineChart);
+  }
+
+  async fetchData() {
+    const res = await fetchBigKidsData();
+    this.setState({ ...this.state, BIGKIDS_DATA: res });
   }
 }

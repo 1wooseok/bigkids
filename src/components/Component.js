@@ -6,6 +6,7 @@ export default class Component {
     this.target = target;
     this.props = props;
     this.setup();
+    this.render()
     this.setEvent();
   }
   setup() {}
@@ -15,7 +16,9 @@ export default class Component {
     return ``;
   }
   render() {
-    this.target.innerHTML = this.template();
+    if (this.template() !== ``) {
+      this.target.innerHTML = this.template();
+    }
     this.mounted();
   }
   setState(newState) {

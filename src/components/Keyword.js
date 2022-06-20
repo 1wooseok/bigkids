@@ -1,11 +1,11 @@
 import Component from "./Component.js";
 
 export default class Keyword extends Component {
-  constructor(render, props) {
-    super(render, props);
-    this.render();
-    this.props = props;
-  }
+  // constructor(render, props) {
+  //   super(render, props);
+  //   this.render();
+  //   this.props = props;
+  // }
 
   template() {
     if (!this.props?.KEYWORD_DATA) {

@@ -1,7 +1,8 @@
 export async function fetchBigKidsData(date) {
   try {
     const today = new Date().toISOString().substring(0, 10);
-    const res = await fetchWithTimeout(`http://114.30.164.217:8000/api/${date || today}`, {
+    // const res = await fetchWithTimeout(`http://114.30.164.217:8000/api/${date || today}`, {
+    const res = await fetchWithTimeout(`../src/2022-06-20.json`, {  
       timeout: 3000,
     });
     const json = await res.json();
