@@ -1,5 +1,5 @@
 export default function createNetworkGraph(NETWORK_DATA, LINKS) {
-  if(!NETWORK_DATA || !LINKS) return null;
+  if (!NETWORK_DATA || !LINKS) return null;
   const networkGraph = {
     createGraph: function () {
       const nodes = NETWORK_DATA.nodes.map((d) => {
@@ -8,19 +8,6 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
       const links = LINKS.map((d) => {
         return Object.create(d);
       });
-
-      const fillCircle = (g) => {
-        switch (g) {
-          case "bad":
-            return "red";
-          case "act":
-            return "salmon";
-          case "media":
-            return "violet";
-          default:
-            return "white";
-        }
-      };
 
       const width = window.innerWidth;
       const center_word = "";
@@ -31,7 +18,7 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
       if (window.innerWidth < 580) {
         viewBoxX = -(width * 0.8);
         viewBoxY = -(width * 1.2);
-      } 
+      }
 
       const simulation = d3
         .forceSimulation(nodes)
@@ -48,7 +35,7 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
 
       const svg = d3
         .select("#NETWORK_GRAPH")
-        .attr("viewBox", `0 0 ${width} ${width * 1.2}`)
+        .attr("viewBox", `0 0 ${width} ${width * 1.2}`);
       const gHolder = svg.append("g").attr("class", "g-holder");
       const link = gHolder
         .append("g")
@@ -69,10 +56,7 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
           d3.select(this)
             .append("circle")
             .attr("r", Math.min(d.value * 9, 30)) //
-            .attr(
-              "fill",
-              d.id === center_word ? center_word_color : fillCircle(d.group)
-            )
+            .attr("fill", d.id === center_word ? center_word_color : "white")
             .attr("stroke", d.id === center_word ? center_word_color : null)
             .attr("stroke-width", (d) => Math.sqrt(d.value));
           d3.select(this)

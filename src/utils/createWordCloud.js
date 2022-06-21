@@ -1,14 +1,15 @@
 export default function createWordCloud(WORD_CLOUD_DATA) {
   if (!WORD_CLOUD_DATA) return null;
 
-  const width = window.innerWidth;
+  const width = document.getElementById('WORD_CLOUD').offsetWidth;
+  console.log(width)
   d3.layout
     .cloud()
     .size([width, width])
     .words(
       WORD_CLOUD_DATA.map((d) => ({
         text: d.text,
-        size: d.size * 6,
+        size: d.size,
         color: d.color,
       }))
     )
@@ -21,19 +22,18 @@ export default function createWordCloud(WORD_CLOUD_DATA) {
   function draw(words) {
     d3.select("#WORD_CLOUD")
       .append("svg")
-      .attr("viewBox", `0 0 ${width * 1.2} ${width * 1.2}`)
+      .attr("viewBox", `0 0 ${width} ${width}`)
       .append("g")
-      .attr("transform", `translate(${width/2}, ${width/2})`) // 300, 300
+      .attr("transform", `translate(300, 300)`) // ${width/2}, ${width/2}
       .selectAll("text")
       .data(words)
       .enter()
       .append("text")
       .style("font-size", (d) => {
         if (window.innerWidth < 580) {
-          // return Number(d.size) < 10 ? `${d.size*6}px` : `${d.size}px`;
-          return `${d.size}px`;
+          return `${d.size * 20}px`;
         } else {
-          return `${d.size*2}px`;
+          return `${d.size*20}px`;
         }
       })
       .style("fill", (d) => d.color)
