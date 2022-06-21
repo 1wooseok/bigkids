@@ -1,5 +1,17 @@
+export function debounce(callback, delay=1500) {
+  let timer;
+  return function (...args) {
+    if(timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      timer = null;
+      callback(...args);
+    }, delay);
+  };
+}
+
 export function getXlabelElement(date) {
-  const yoil = getYoilByDate(new Date(date).getDay());
+  const yoils = ['일', '월', '화', '수', '목', '금', '토'];
+  const yoil = yoils[new Date(date).getDay()];
   return `
       <div class="x-label-wrap">
       <div class="x-label ${
@@ -29,24 +41,3 @@ export function generateLinksByNodes(NODES) {
   }
   return links;
 }
-
-function getYoilByDate(num) {
-    switch (num) {
-      case 0:
-        return "일";
-      case 1:
-        return "월";
-      case 2:
-        return "화";
-      case 3:
-        return "수";
-      case 4:
-        return "목";
-      case 5:
-        return "금";
-      case 6:
-        return "토";
-      default:
-        throw new Error(alert("날짜 에러"));
-    }
-  }

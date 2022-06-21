@@ -1,5 +1,5 @@
 import Component from "./Component.js";
-import { updateLineChart } from "../utils/createLineChart.js";
+// import { updateLineChart } from "../utils/createLineChart.js";
 import { getXlabelElement } from "../utils/utils.js";
 
 export default class LineChart extends Component {
@@ -19,9 +19,7 @@ export default class LineChart extends Component {
 
   mounted() {
     const { LINE_CHART_DATA } = this.props;
-    const myChart = this.state;
-    this.props.renderLineChart();
+    this.props.renderLineChart(LINE_CHART_DATA);
     // updateLineChart(myChart, LINE_CHART_DATA);
   }
 }
-

@@ -1,5 +1,8 @@
 export default function renderLineChart(LINE_CHART_DATA) {
   if (!LINE_CHART_DATA) return null;
+
+  // const canvas = document.getElementById("myChart");
+  // canvas.width = window.innerWidth * 0.5;
   const labels = ["", "", "", "", "", "", ""];
 
   const data = {
