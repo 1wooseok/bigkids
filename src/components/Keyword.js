@@ -40,11 +40,9 @@ export default class Keyword extends Component {
       if (e.target.classList.contains("prev")) {
         e.stopImmediatePropagation();
         console.log('이벤트 실행됨');
-        this.props.setData({ date: null, BIGKIDS_DATA: null })
         const [yy, mm, dd] = this.props.date.split("-").map((x) => parseInt(x));
-        const date = new Date(yy, mm - 1, dd).toISOString().substring(0, 10);
-        const newData = this.props.fetchData(date);
-        this.props.setData(date, newData);
+        const prevDate = new Date(yy, mm - 1, dd).toISOString().substring(0, 10);
+        this.props.fetchData(prevDate);
       }
     });
   }

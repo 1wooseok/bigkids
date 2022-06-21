@@ -20,8 +20,18 @@ export default class App extends Component {
     this.fetchData(this.state.date); // init
   }
   mounted() {
-    if (!this.state.BIGKIDS_DATA || !this.state.date) return;
-    const { keyword, wordcloud, network, linechart, news } = this.state.BIGKIDS_DATA;
+    let keyword,
+      wordcloud,
+      network,
+      linechart,
+      news = null;
+    if (this.state.BIGKIDS_DATA && this.state.date) {
+      keyword = this.state.BIGKIDS_DATA.keyword;
+      wordcloud = this.state.BIGKIDS_DATA.wordcloud;
+      network = this.state.BIGKIDS_DATA.network;
+      linechart = this.state.BIGKIDS_DATA.linechart;
+      news = this.state.BIGKIDS_DATA.new;
+    }
     const keyword_wrap = document.getElementById("keyword_wrap");
     const wordCloud_wrap = document.getElementById("word_cloud");
     const networkGraph_wrap = document.getElementById("network_wrap");
@@ -32,7 +42,6 @@ export default class App extends Component {
       date: this.state.date,
       KEYWORD_DATA: keyword,
       fetchData: this.fetchData.bind(this),
-      setData: this.setData.bind(this)
     });
     new WordCloud(wordCloud_wrap, {
       WORD_CLOUD_DATA: wordcloud,
@@ -55,12 +64,12 @@ export default class App extends Component {
   renderWordCloud(WORD_CLOUD_DATA) {
     createWordCloud(WORD_CLOUD_DATA);
   }
-  
+
   renderNetworkGraph(NETWORK_DATA) {
     const LINKS = generateLinksByNodes(NETWORK_DATA);
     createNetworkGraph(NETWORK_DATA, LINKS);
   }
-  
+
   renderLineChart(LINE_CHART_DATA) {
     return createLineChart(LINE_CHART_DATA);
   }
@@ -68,9 +77,5 @@ export default class App extends Component {
   async fetchData(date) {
     const res = await fetchBigKidsData(date);
     this.setState({ date, BIGKIDS_DATA: res });
-  }
-
-  setData(date, newData) {
-    this.setState({ date, BIGKIDS_DATA: newData})
   }
 }
