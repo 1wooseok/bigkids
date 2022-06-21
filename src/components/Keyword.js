@@ -5,12 +5,12 @@ export default class Keyword extends Component {
     if (!this.props?.KEYWORD_DATA) {
       return `
       <h3>오늘의 키워드</h3>
-      <div class="keyword" >
-        <div id="prev_keyword" class="off_keyword"></div>
+      <div class="keyword">
+        <div id="prev_keyword" class="off_keyword"><div class='spinner2'></div></div>
         <div class="arr"><img src="./image/next-2.png" alt="arr"></div>
-        <div id="today_keyword" class="on_keyword"></div>
+        <div id="today_keyword" class="on_keyword"><div class='spinner2'></div></div>
         <div class="arr"><img src="./image/next-2.png" alt="arr"></div>
-        <div id="next_keyword" class="off_keyword"></div>
+        <div id="next_keyword" class="off_keyword"><div class='spinner2'></div></div>
       </div>
     `;
     }
@@ -18,7 +18,7 @@ export default class Keyword extends Component {
     const [yy, mm, dd] = today.date.split("-").map((x) => parseInt(x));
     return `
       <h3>오늘의 키워드</h3>
-      <div class="keyword" >
+      <div class="keyword">
           <div id="prev_keyword" class="off_keyword prev">${prev.word}</div>
           <div class="arr"><img class="prev" src="./image/next-2.png" alt="arr"></div>
           <div id="today_keyword" class="on_keyword">${today.word}</div>
@@ -38,8 +38,13 @@ export default class Keyword extends Component {
   setEvent() {
     this.target.addEventListener("click", (e) => {
       if (e.target.classList.contains("prev")) {
+        e.stopImmediatePropagation();
+        console.log('이벤트 실행됨');
+        this.props.setData({ date: null, BIGKIDS_DATA: null })
         const [yy, mm, dd] = this.props.date.split("-").map((x) => parseInt(x));
-        this.props.fetchData(new Date(yy, mm - 1, dd).toISOString().substring(0, 10));
+        const date = new Date(yy, mm - 1, dd).toISOString().substring(0, 10);
+        const newData = this.props.fetchData(date);
+        this.props.setData(date, newData);
       }
     });
   }

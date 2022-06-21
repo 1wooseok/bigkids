@@ -15,12 +15,13 @@ export default class App extends Component {
   setup() {
     this.state = {
       date: new Date().toISOString().substring(0, 10),
-      BIGKIDS_DATA: {},
+      BIGKIDS_DATA: null,
     };
     this.fetchData(this.state.date); // init
   }
   mounted() {
-    const { keyword, linechart, news } = this.state.BIGKIDS_DATA;
+    if (!this.state.BIGKIDS_DATA || !this.state.date) return;
+    const { keyword, wordcloud, network, linechart, news } = this.state.BIGKIDS_DATA;
     const keyword_wrap = document.getElementById("keyword_wrap");
     const wordCloud_wrap = document.getElementById("word_cloud");
     const networkGraph_wrap = document.getElementById("network_wrap");
@@ -30,12 +31,15 @@ export default class App extends Component {
     new Keyword(keyword_wrap, {
       date: this.state.date,
       KEYWORD_DATA: keyword,
-      fetchData: this.fetchData.bind(this)
+      fetchData: this.fetchData.bind(this),
+      setData: this.setData.bind(this)
     });
     new WordCloud(wordCloud_wrap, {
+      WORD_CLOUD_DATA: wordcloud,
       renderWordCloud: this.renderWordCloud.bind(this),
     });
     new NetworkGraph(networkGraph_wrap, {
+      NETWORK_DATA: network,
       renderNetworkGraph: this.renderNetworkGraph.bind(this),
     });
     new LineChart(lineChart_wrap, {
@@ -48,24 +52,25 @@ export default class App extends Component {
   }
 
   // method
-  renderWordCloud() {
-    const { wordcloud } = this.state.BIGKIDS_DATA;
-    createWordCloud(wordcloud);
+  renderWordCloud(WORD_CLOUD_DATA) {
+    createWordCloud(WORD_CLOUD_DATA);
   }
   
-  renderNetworkGraph() {
-    const { network } = this.state.BIGKIDS_DATA;
-    const links = generateLinksByNodes(network);
-    createNetworkGraph(network, links);
+  renderNetworkGraph(NETWORK_DATA) {
+    const LINKS = generateLinksByNodes(NETWORK_DATA);
+    createNetworkGraph(NETWORK_DATA, LINKS);
   }
   
-  renderLineChart() {
-    const { linechart } = this.state.BIGKIDS_DATA;
-    return createLineChart(linechart);
+  renderLineChart(LINE_CHART_DATA) {
+    return createLineChart(LINE_CHART_DATA);
   }
 
   async fetchData(date) {
     const res = await fetchBigKidsData(date);
     this.setState({ date, BIGKIDS_DATA: res });
+  }
+
+  setData(date, newData) {
+    this.setState({ date, BIGKIDS_DATA: newData})
   }
 }
