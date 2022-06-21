@@ -35,9 +35,22 @@
 }
 
 #WORD_CLOUD_Loader, #NETWORK_Loader {
-  width: 35vw;
+  width: 25vw;
   height: 90vw;
   max-width: 1300px;
+  max-height: 400px;
+
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#NEWS_Loader {
+  width: 79vw;
+  height: 90vw;
+  max-width: 1200px;
   max-height: 400px;
 
   margin: 0 auto;

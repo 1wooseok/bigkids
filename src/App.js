@@ -30,7 +30,7 @@ export default class App extends Component {
       wordcloud = this.state.BIGKIDS_DATA.wordcloud;
       network = this.state.BIGKIDS_DATA.network;
       linechart = this.state.BIGKIDS_DATA.linechart;
-      news = this.state.BIGKIDS_DATA.new;
+      news = this.state.BIGKIDS_DATA.news;
     }
     const keyword_wrap = document.getElementById("keyword_wrap");
     const wordCloud_wrap = document.getElementById("word_cloud");
@@ -74,8 +74,13 @@ export default class App extends Component {
     return createLineChart(LINE_CHART_DATA);
   }
 
-  async fetchData(date) {
-    const res = await fetchBigKidsData(date);
-    this.setState({ date, BIGKIDS_DATA: res });
+  async fetchData(newDate) {
+    this.setState({ BIGKIDS_DATA: null });
+    try {
+      const res = await fetchBigKidsData(newDate);
+      this.setState({ date: newDate, BIGKIDS_DATA: res });
+    } catch (err) {
+      throw new Error(alert('데이터를 불러오는데 실패했습니다. 새로고침 후 다시 시도해 주세요.'));
+    }
   }
 }

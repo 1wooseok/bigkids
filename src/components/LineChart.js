@@ -3,13 +3,14 @@ import Component from "./Component.js";
 import { getXlabelElement } from "../utils/utils.js";
 
 export default class LineChart extends Component {
-  // setup() {
-  //   this.state = this.props.renderLineChart();
-  // }
-
   template() {
     const { LINE_CHART_DATA } = this.props;
-    if (!LINE_CHART_DATA) return ``;
+    if (!LINE_CHART_DATA)
+      return `<div id="NETWORK_Loader"><div class='spinner2'></div></div>`;
+
+    if (LINE_CHART_DATA === [])
+      return `<div><strong>데이터가 존재하지 않습니다.</strong></div>`;
+
     const week = LINE_CHART_DATA?.map((l) => l.date);
     return `
       <canvas id="myChart"></canvas>
