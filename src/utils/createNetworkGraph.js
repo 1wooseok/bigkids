@@ -9,16 +9,10 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
         return Object.create(d);
       });
 
-      const width = window.innerWidth;
-      const center_word = "";
+      const width = document.getElementById("network_wrap").offsetWidth;
+      console.log()
+      const center_word = NETWORK_DATA.nodes[0].id; // 임시
       const center_word_color = "#FF8E7E";
-
-      let viewBoxX = -(width * 0.5);
-      let viewBoxY = -(width * 0.5);
-      if (window.innerWidth < 580) {
-        viewBoxX = -(width * 0.8);
-        viewBoxY = -(width * 1.2);
-      }
 
       const simulation = d3
         .forceSimulation(nodes)
@@ -35,7 +29,7 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
 
       const svg = d3
         .select("#NETWORK_GRAPH")
-        .attr("viewBox", `0 0 ${width} ${width * 1.2}`);
+        .attr("viewBox", `0 0 ${width} ${width}`);
       const gHolder = svg.append("g").attr("class", "g-holder");
       const link = gHolder
         .append("g")

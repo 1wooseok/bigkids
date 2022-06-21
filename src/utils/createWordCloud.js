@@ -5,11 +5,11 @@ export default function createWordCloud(WORD_CLOUD_DATA) {
   console.log(width)
   d3.layout
     .cloud()
-    .size([width, width])
+    // .size([width, width])
     .words(
       WORD_CLOUD_DATA.map((d) => ({
         text: d.text,
-        size: d.size,
+        size: fonts[~~(Math.random()*10) % fonts.length] * 1.3,
         color: d.color,
       }))
     )
@@ -19,35 +19,22 @@ export default function createWordCloud(WORD_CLOUD_DATA) {
     .on("end", draw)
     .start();
 
+  
   function draw(words) {
     d3.select("#WORD_CLOUD")
       .append("svg")
       .attr("viewBox", `0 0 ${width} ${width}`)
       .append("g")
-      .attr("transform", `translate(300, 300)`) // ${width/2}, ${width/2}
+      .attr("transform", `translate(${width/2}, ${width/2})`) // ${width/2}, ${width/2}
       .selectAll("text")
       .data(words)
       .enter()
       .append("text")
-      .style("font-size", (d) => {
-        if (window.innerWidth < 580) {
-          return `${d.size * 20}px`;
-        } else {
-          return `${d.size*20}px`;
-        }
-      })
+      .style("font-size", d => d.size)
       .style("fill", (d) => d.color)
       .attr("text-anchor", "middle")
-      .attr("transform", (d) => `translate(${[d.x, d.y]}) rotate(${d.rotate})`)
+      .attr("transform", (d) => `translate(${[d.x, d.y]}) rotate(${d.rotate}) scale(0.9)`)
       .text((d) => d.text);
   }
 }
-
-// let width =
-//   WINDOW_WIDTH < 850
-//     ? WINDOW_WIDTH * 1.3
-//     : WINDOW_WIDTH < 1500
-//     ? WINDOW_WIDTH / 2
-//     : WINDOW_WIDTH < 1800
-//     ? WINDOW_WIDTH / 2.5
-//     : WINDOW_WIDTH / 3;
+const fonts = [12, 16, 22, 28];
