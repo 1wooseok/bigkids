@@ -6,7 +6,7 @@ export default class Component {
     this.target = target;
     this.props = props;
     this.setup();
-    this.render()
+    this.render();
     this.setEvent();
   }
   setup() {}

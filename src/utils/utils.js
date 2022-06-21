@@ -1,7 +1,7 @@
-export function debounce(callback, delay=1500) {
+export function debounce(callback, delay = 1500) {
   let timer;
   return function (...args) {
-    if(timer) clearTimeout(timer);
+    if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
       timer = null;
       callback(...args);
@@ -10,7 +10,7 @@ export function debounce(callback, delay=1500) {
 }
 
 export function getXlabelElement(date) {
-  const yoils = ['일', '월', '화', '수', '목', '금', '토'];
+  const yoils = ["일", "월", "화", "수", "목", "금", "토"];
   const yoil = yoils[new Date(date).getDay()];
   return `
       <div class="x-label-wrap">

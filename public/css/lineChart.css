@@ -1,0 +1,52 @@
+.lineChart_wrap {
+  position: relative;
+  margin: 2.5rem auto 0 auto;
+}
+
+.xAxis {
+  display: flex;
+  justify-content: first baseline;
+
+  margin-top: 10px;
+}
+
+.x-label-wrap {
+  font-size: 1.5em;
+  font-weight: bold;
+  width: calc(100% / 7);
+}
+
+.x-label {
+  text-align: center;
+  font-weight: bold;
+}
+
+.DateAxis {
+  width: 100%;
+  display: flex;
+  margin-top: 1rem;
+  text-align: center;
+  transform: scale(1.12);
+}
+
+.x-date-label {
+  margin-top: 0.5rem;
+
+  font-size: 0.5rem;
+  font-weight: bold;
+  color: black;
+
+  text-align: center;
+}
+
+.x-label-wrap:first-child {
+  color: black;
+}
+
+.__sun {
+  color: #d13e3e;
+}
+
+.__sat {
+  color: #396ee2;
+}

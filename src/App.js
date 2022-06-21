@@ -80,7 +80,7 @@ export default class App extends Component {
       const res = await fetchBigKidsData(newDate);
       this.setState({ date: newDate, BIGKIDS_DATA: res });
     } catch (err) {
-      throw new Error(alert('데이터를 불러오는데 실패했습니다. 새로고침 후 다시 시도해 주세요.'));
+      console.log(err);
     }
   }
 }

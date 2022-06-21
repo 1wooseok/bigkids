@@ -2,12 +2,12 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: {
-    index: "./src/index.js",
+    index: "./src/main.js",
   },
   output: {
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "./public"),
     filename: "[name]_bundle.js",
   },
   module: {
@@ -17,7 +17,6 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        // test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         test: /\.(png|jpe?g|gif|svg|webp)$/,
         use: ["file-loader"],
       },
@@ -34,11 +33,6 @@ module.exports = {
       template: 'index.html',
       filename: "index.html",
       chunks: ["index"],
-    }),
-    new HtmlWebpackPlugin({
-      template: 'video.html',
-      filename: "video.html",
-      chunks: ["video"],
     }),
   ],
 };

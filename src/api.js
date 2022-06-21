@@ -1,13 +1,11 @@
 export async function fetchBigKidsData(date) {
   try {
     const res = await fetchWithTimeout(`http://127.0.0.1:8000/api/${date}`, {
-    // const res = await fetch(`http://127.0.0.1:8000/api/2022-05-06`, {
-    // const res = await fetchWithTimeout(`http://114.30.164.217:8000/api/${date}`, {
-    // const res = await fetchWithTimeout(`http://220.149.53.11:8080/api/${date}`, {  
+      // const res = await fetchWithTimeout(`http://114.30.164.217:8000/api/${date}`, {
+      // const res = await fetchWithTimeout(`http://220.149.53.11:8080/api/${date}`, {
       timeout: 3000,
     });
     const json = await res.json();
-    console.log({json})
     return json;
   } catch (err) {
     throw new Error(

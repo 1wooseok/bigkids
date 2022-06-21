@@ -9,7 +9,8 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
         return Object.create(d);
       });
 
-      const width = parseInt(document.getElementById("network_wrap").offsetWidth) * 1.3; // 400으로 고정해보기
+      const width =
+        parseInt(document.getElementById("network_wrap").offsetWidth) * 1.3;
 
       const center_word = NETWORK_DATA.nodes[0].id; // 임시
       const center_word_color = "#FF8E7E";
