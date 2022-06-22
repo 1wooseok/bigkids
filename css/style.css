@@ -523,6 +523,7 @@ header {
     padding: 0 5rem;
   }
 
+#word_cloud, #network_wrap { flex: 1; }
 
 @media (max-width: 580px) {
     html {font-size: 12px;}
@@ -530,7 +531,7 @@ header {
     header .inner_wrap {flex-direction: column;}
     .inner_wrap {max-width: 500px; margin: 0 auto; padding: 0 30px; }
     .inner_wrap2 {width: 95%; display: flex; justify-content: center; align-items: center;}
-    .words_wrap {display: block;}
+    .words_wrap {display: grid; grid-template-rows: 1fr 1fr;}
 
     .con1 > h3::after {
         position: absolute;

@@ -1,7 +1,7 @@
 export default function createWordCloud(WORD_CLOUD_DATA) {
   if (!WORD_CLOUD_DATA) return null;
 
-  const width = document.getElementById("WORD_CLOUD").offsetWidth;
+  const width = document.getElementById("word_cloud").offsetWidth;
   d3.layout
     .cloud()
     .words(
@@ -18,7 +18,7 @@ export default function createWordCloud(WORD_CLOUD_DATA) {
     .start();
 
   function draw(words) {
-    d3.select("#WORD_CLOUD")
+    d3.select("#word_cloud")
       .append("svg")
       .attr("viewBox", `0 0 ${width} ${width}`)
       .append("g")
