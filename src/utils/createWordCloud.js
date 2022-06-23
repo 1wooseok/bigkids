@@ -1,7 +1,14 @@
 export default function createWordCloud(WORD_CLOUD_DATA) {
   if (!WORD_CLOUD_DATA) return null;
   if (WORD_CLOUD_DATA.length === 0) return null;
-  const width = document.getElementById("word_cloud").offsetWidth;
+
+  let width = document.getElementById("word_cloud").clientWidth;
+  // let fontSizeScale = d3
+  //   .scalePow()
+  //   .exponent(5)
+  //   .domain([0, 1])
+  //   .range([minFont, maxFont]);
+
   d3.layout
     .cloud()
     .words(
@@ -22,7 +29,7 @@ export default function createWordCloud(WORD_CLOUD_DATA) {
       .append("svg")
       .attr("viewBox", `0 0 ${width} ${width}`)
       .append("g")
-      .attr("transform", `translate(${width / 2}, ${width / 2})`)
+      .attr("transform", `translate(${width / 2}, ${width / 2}) scale(1.4)`)
       .selectAll("text")
       .data(words)
       .enter()
@@ -37,4 +44,4 @@ export default function createWordCloud(WORD_CLOUD_DATA) {
       .text((d) => d.text);
   }
 }
-const fonts = [12, 16, 22, 28];
+const fonts = [12, 18, 24, 32];

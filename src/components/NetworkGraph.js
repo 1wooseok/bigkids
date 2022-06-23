@@ -2,7 +2,6 @@ import Component from "./Component.js";
 
 export default class NetworkGraph extends Component {
   template() {
-    console.log(this.props.NETWORK_DATA);
     if (!this.props.NETWORK_DATA) {
       return `
         <div id="NETWORK_Loader">

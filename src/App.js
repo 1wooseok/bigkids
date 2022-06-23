@@ -76,11 +76,7 @@ export default class App extends Component {
 
   async fetchData(newDate) {
     this.setState({ BIGKIDS_DATA: null });
-    try {
-      const res = await fetchBigKidsData(newDate);
-      this.setState({ date: newDate, BIGKIDS_DATA: res });
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await fetchBigKidsData(newDate);
+    this.setState({ date: newDate, BIGKIDS_DATA: res });
   }
 }

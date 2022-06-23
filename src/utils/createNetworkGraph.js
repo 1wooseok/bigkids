@@ -1,7 +1,7 @@
 export default function createNetworkGraph(NETWORK_DATA, LINKS) {
   if (!NETWORK_DATA || !LINKS) return null;
   if (NETWORK_DATA.nodes.length === 0 || LINKS.length === 0) return null;
-  console.log("이왜실?")
+
   const networkGraph = {
     createGraph: function () {
       const nodes = NETWORK_DATA.nodes.map((d) => {
@@ -11,9 +11,8 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
         return Object.create(d);
       });
 
-      const width =
-        parseInt(document.getElementById("network_wrap").offsetWidth) * 1.3;
-
+      const width = document.getElementById("network_wrap").clientWidth;
+      console.log({ width });
       const center_word = NETWORK_DATA.nodes[0].id; // 임시
       const center_word_color = "#FF8E7E";
 
@@ -27,12 +26,13 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
         .force("center", d3.forceCenter(width / 2, width / 2))
         .force(
           "collide",
-          d3.forceCollide().radius((d) => d.value * 15)
+          d3.forceCollide().radius((d) => d.value * 20)
         );
 
       const svg = d3
         .select("#NETWORK_GRAPH")
         .attr("viewBox", `0 0 ${width} ${width}`); // 640 640
+
       const gHolder = svg.append("g").attr("class", "g-holder");
       const link = gHolder
         .append("g")
@@ -52,16 +52,16 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
         .each(function (d) {
           d3.select(this)
             .append("circle")
-            .attr("r", Math.min(d.value * 9, 30)) //
+            .attr("r", Math.min(d.value * 8, 30)) //
             .attr("fill", d.id === center_word ? center_word_color : "white")
             .attr("stroke", d.id === center_word ? center_word_color : null)
-            .attr("stroke-width", (d) => Math.sqrt(d.value));
+            .attr("stroke-width", 1);
           d3.select(this)
             .append("text")
             .text(d.id)
             .attr("dy", 6)
             .style("text-anchor", "middle")
-            .style("font-size", "18px") // 12px'
+            .style("font-size", "16px") // 12px'
             .style("font-weight", 800)
             .attr("class", "node-label");
         })
