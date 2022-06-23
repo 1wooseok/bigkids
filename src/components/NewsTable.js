@@ -5,8 +5,8 @@ export default class NewsTable extends Component {
     const { NEWS_DATA } = this.props;
     if (!NEWS_DATA)
       return `<div id="NEWS_Loader"><div class='spinner2'></div></div>`;
-    if (NEWS_DATA === [])
-      return `<div><strong>데이터가 존재하지 않습니다.</strong></div>`;
+    if (NEWS_DATA.length === 0)
+      return `<div class='no_data'>데이터가 존재하지 않습니다.</div>`;
     return `
       ${NEWS_DATA.map((data) => {
         const { date, media, title, link } = data;

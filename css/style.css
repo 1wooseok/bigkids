@@ -524,7 +524,7 @@ header {
   }
 
 #word_cloud, #network_wrap { flex: 1; }
-
+#word_cloud, #network_wrap { max-height: 500px;}
 @media (max-width: 580px) {
     html {font-size: 12px;}
     header {height: 150px; padding: 10px 0;}

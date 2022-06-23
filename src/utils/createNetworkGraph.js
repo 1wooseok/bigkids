@@ -1,5 +1,7 @@
 export default function createNetworkGraph(NETWORK_DATA, LINKS) {
   if (!NETWORK_DATA || !LINKS) return null;
+  if (NETWORK_DATA.nodes.length === 0 || LINKS.length === 0) return null;
+  console.log("이왜실?")
   const networkGraph = {
     createGraph: function () {
       const nodes = NETWORK_DATA.nodes.map((d) => {

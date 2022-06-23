@@ -1,5 +1,7 @@
 export default function renderLineChart(LINE_CHART_DATA) {
   if (!LINE_CHART_DATA) return null;
+  if (LINE_CHART_DATA.length === 0) return null;
+  
   const data = {
     labels: ["", "", "", "", "", "", ""],
     datasets: [

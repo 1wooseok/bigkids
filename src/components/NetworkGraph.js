@@ -2,6 +2,7 @@ import Component from "./Component.js";
 
 export default class NetworkGraph extends Component {
   template() {
+    console.log(this.props.NETWORK_DATA);
     if (!this.props.NETWORK_DATA) {
       return `
         <div id="NETWORK_Loader">
@@ -9,8 +10,9 @@ export default class NetworkGraph extends Component {
         </div>
       `;
     }
-    if (this.props.NETWORK_DATA === [])
-      return `<div><strong>데이터가 존재하지 않습니다.</strong></div>`;
+    if (this.props.NETWORK_DATA.nodes.length === 0) {
+      return `<div class="no_data">데이터가 존재하지 않습니다.</div>`;
+    }
     return `<svg id="NETWORK_GRAPH"></svg>`;
   }
 

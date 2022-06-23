@@ -1,6 +1,6 @@
 export default function createWordCloud(WORD_CLOUD_DATA) {
   if (!WORD_CLOUD_DATA) return null;
-
+  if (WORD_CLOUD_DATA.length === 0) return null;
   const width = document.getElementById("word_cloud").offsetWidth;
   d3.layout
     .cloud()
