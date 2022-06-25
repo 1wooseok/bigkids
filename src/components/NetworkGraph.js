@@ -10,7 +10,7 @@ export default class NetworkGraph extends Component {
       `;
     }
     if (this.props.NETWORK_DATA.nodes.length === 0) {
-      return `<div class="no_data">데이터가 존재하지 않습니다.</div>`;
+      return `<div class='no_data'>데이터가 존재하지 않습니다.</div>`;
     }
     return `<svg id="NETWORK_GRAPH"></svg>`;
   }

@@ -8,7 +8,7 @@ import NewsTable from "./components/NewsTable.js";
 import createWordCloud from "./utils/createWordCloud.js";
 import createNetworkGraph from "./utils/createNetworkGraph.js";
 import createLineChart from "./utils/createLineChart.js";
-import { generateLinksByNodes } from "./utils/utils.js";
+import { generateLinksByNodes, jsonToExcel } from "./utils/utils.js";
 import { fetchBigKidsData } from "./api.js";
 
 export default class App extends Component {
@@ -60,6 +60,16 @@ export default class App extends Component {
     });
   }
 
+  setEvent() {
+    this.target.addEventListener('click', e => {
+      e.stopImmediatePropagation();
+      if (e.target.classList.contains('report_btn')) {
+        const { BIGKIDS_DATA } = this.state;
+        jsonToExcel(BIGKIDS_DATA);
+      }
+    })
+  }
+
   // method
   renderWordCloud(WORD_CLOUD_DATA) {
     createWordCloud(WORD_CLOUD_DATA);
@@ -76,7 +86,11 @@ export default class App extends Component {
 
   async fetchData(newDate) {
     this.setState({ BIGKIDS_DATA: null });
-    const res = await fetchBigKidsData(newDate);
-    this.setState({ date: newDate, BIGKIDS_DATA: res });
+    try {
+      const res = await fetchBigKidsData(newDate);
+      this.setState({ date: newDate, BIGKIDS_DATA: res });
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

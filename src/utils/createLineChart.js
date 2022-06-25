@@ -1,7 +1,7 @@
 export default function renderLineChart(LINE_CHART_DATA) {
   if (!LINE_CHART_DATA) return null;
   if (LINE_CHART_DATA.length === 0) return null;
-  
+
   const data = {
     labels: ["", "", "", "", "", "", ""],
     datasets: [
@@ -35,6 +35,8 @@ export default function renderLineChart(LINE_CHART_DATA) {
         display: false,
       },
     },
+    responsive: true,
+    maintainAspectRatio: false,
   };
 
   const config = {
@@ -52,6 +54,7 @@ export default function renderLineChart(LINE_CHART_DATA) {
 
 export function updateLineChart(myLineChart, LINE_CHART_DATA) {
   if (!LINE_CHART_DATA || !myLineChart) return null;
-  myLineChart.datasets = LINE_CHART_DATA.map((x) => x.value); // Would update the first dataset's value of 'March' to be 50
+  if (LINE_CHART_DATA.length === 0) return null;
+  myLineChart.datasets = LINE_CHART_DATA.map((x) => x.value);
   myLineChart.update();
 }
