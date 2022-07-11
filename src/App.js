@@ -1,14 +1,16 @@
-import Component from "./components/Component.js";
-import Keyword from "./components/Keyword.js";
-import WordCloud from "./components/WordCloud.js";
-import NetworkGraph from "./components/NetworkGraph.js";
-import LineChart from "./components/LineChart.js";
-import NewsTable from "./components/NewsTable.js";
+import {
+  Component,
+  Keyword,
+  WordCloud,
+  NetworkGraph,
+  LineChart,
+  NewsTable,
+} from "./components/index.js";
 
 import createWordCloud from "./utils/createWordCloud.js";
 import createNetworkGraph from "./utils/createNetworkGraph.js";
 import createLineChart from "./utils/createLineChart.js";
-import { generateLinksByNodes, jsonToExcel } from "./utils/utils.js";
+import { generateLinksByNodes } from "./utils/utils.js";
 import { fetchBigKidsData } from "./api.js";
 
 export default class App extends Component {
@@ -16,15 +18,14 @@ export default class App extends Component {
     this.state = {
       date: new Date().toISOString().substring(0, 10),
       BIGKIDS_DATA: null,
+      CURR_MODAL: null
     };
     this.fetchData(this.state.date); // init
   }
+
   mounted() {
-    let keyword,
-      wordcloud,
-      network,
-      linechart,
-      news = null;
+    let keyword, wordcloud, network, linechart, news = null;
+
     if (this.state.BIGKIDS_DATA && this.state.date) {
       keyword = this.state.BIGKIDS_DATA.keyword;
       wordcloud = this.state.BIGKIDS_DATA.wordcloud;
@@ -32,11 +33,12 @@ export default class App extends Component {
       linechart = this.state.BIGKIDS_DATA.linechart;
       news = this.state.BIGKIDS_DATA.news;
     }
-    const keyword_wrap = document.getElementById("keyword_wrap");
-    const wordCloud_wrap = document.getElementById("word_cloud");
-    const networkGraph_wrap = document.getElementById("network_wrap");
-    const lineChart_wrap = document.getElementById("lineChart_wrap");
-    const newsTable_wrap = document.getElementById("news_table");
+
+    const keyword_wrap = this.target.querySelector("#keyword_wrap");
+    const wordCloud_wrap = this.target.querySelector("#word_cloud");
+    const networkGraph_wrap = this.target.querySelector("#network_wrap");
+    const lineChart_wrap = this.target.querySelector("#lineChart_wrap");
+    const newsTable_wrap = this.target.querySelector("#news_table");
 
     new Keyword(keyword_wrap, {
       date: this.state.date,
@@ -64,8 +66,10 @@ export default class App extends Component {
     this.target.addEventListener('click', e => {
       e.stopImmediatePropagation();
       if (e.target.classList.contains('report_btn')) {
-        const { BIGKIDS_DATA } = this.state;
-        jsonToExcel(BIGKIDS_DATA);
+        if (!this.state.BIGKIDS_DATA) {
+          return alert("데이터가 없습니다.");
+        }
+        window.print();
       }
     })
   }
@@ -90,7 +94,7 @@ export default class App extends Component {
       const res = await fetchBigKidsData(newDate);
       this.setState({ date: newDate, BIGKIDS_DATA: res });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 }

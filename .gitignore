@@ -1,9 +1,11 @@
 node_modules
 
-public
+dist
 
 .vscode
 
 .DS_Store
 
 package-lock.json
+
+API_SERVER.js

@@ -1,8 +1,11 @@
 import Component from "./Component.js";
+import { dashFormat } from "../utils/utils.js";
 
 export default class Keyword extends Component {
   template() {
-    if (!this.props?.KEYWORD_DATA) {
+    const { KEYWORD_DATA } = this.props;
+
+    if (!KEYWORD_DATA) {
       return `
       <h3>오늘의 키워드</h3>
       <div class="keyword">
@@ -14,7 +17,8 @@ export default class Keyword extends Component {
       </div>
     `;
     }
-    const { prev, today, next } = this.props?.KEYWORD_DATA;
+
+    const { prev, today, next } = KEYWORD_DATA;
     return `
       <h3>오늘의 키워드</h3>
       <div class="keyword">
@@ -26,35 +30,33 @@ export default class Keyword extends Component {
       </div>
       <div class="key_times">
         <p id="period">${`기간 : ${today.from_date.replace(
-          /-/g,
-          ". "
-        )} ~ ${today.until_date.replace(/-/g, " .")}`}</p>
+      /-/g,
+      ". "
+    )} ~ ${today.until_date.replace(/-/g, " .")}`}</p>
       </div>
     `;
   }
 
   setEvent() {
-    this.target.addEventListener("click", (e) => {
-      e.stopImmediatePropagation();
-      const [yy, mm, dd] = this.props.date.split("-").map((x) => parseInt(x));
+    let { date, fetchData } = this.props;
+    const [yy, mm, dd] = date.split("-").map((x) => parseInt(x));
 
+    this.target.onclick = (e) => {
       if (e.target.classList.contains("prev_btn")) {
-        const prevDate = new Date(yy, mm - 1, dd)
-          .toISOString()
-          .substring(0, 10);
-        this.props.date = prevDate;
-        this.props.fetchData(prevDate);
+        const prevDate = dashFormat(yy, mm - 1, dd);
+        date = prevDate;
+        fetchData(prevDate);
       }
 
       if (e.target.classList.contains("next_btn")) {
-        const nextDate = new Date(yy, mm - 1, dd + 2)
-          .toISOString()
-          .substring(0, 10);
-        if (this.props.date === new Date().toISOString().substring(0, 10))
+        if (date === dashFormat()) {
           return;
-        this.props.date = nextDate;
-        this.props.fetchData(nextDate);
+        }
+        const nextDate = dashFormat(yy, mm - 1, dd + 2);
+        date = nextDate;
+        fetchData(nextDate);
       }
-    });
+    }
   }
 }
+

@@ -1,6 +1,8 @@
+import { API_SERVER } from "../API_SERVER";
+
 export async function fetchBigKidsData(date) {
   const TIME_OUT = { timeout: 10000 };
-  const API_URL = `http://220.149.53.11:8080/api/${date}`;
+  const API_URL = `API_SERVER/${date}`;
   const MESSAGE = "데이터를 불러오는데 실패했습니다. 새로고침후 다시 시도해 주세요!";
   try {
     const res = await fetchWithTimeout(API_URL, TIME_OUT);

@@ -9,9 +9,9 @@ export default class Component {
     this.render();
     this.setEvent();
   }
-  setup() {}
-  setEvent() {}
-  mounted() {}
+  setup() { }
+  setEvent() { }
+  mounted() { }
   template() {
     return ``;
   }

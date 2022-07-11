@@ -1,13 +1,15 @@
+import { generateNewsQuantityData } from "./utils.js";
+
 export default function renderLineChart(LINE_CHART_DATA) {
-  if (!LINE_CHART_DATA) return null;
-  if (LINE_CHART_DATA.length === 0) return null;
+  if (!LINE_CHART_DATA) return;
+  if (LINE_CHART_DATA.length === 0) return;
 
   const data = {
     labels: ["", "", "", "", "", "", ""],
     datasets: [
       {
-        label: "  조회수 ",
-        data: LINE_CHART_DATA.map((l) => l.value),
+        label: "  뉴스량 ",
+        data: generateNewsQuantityData(LINE_CHART_DATA),
         borderColor: "#b8e4ff",
         backgroundColor: "#b8e4ff",
         borderJoinStyle: "round",
@@ -53,8 +55,8 @@ export default function renderLineChart(LINE_CHART_DATA) {
 }
 
 export function updateLineChart(myLineChart, LINE_CHART_DATA) {
-  if (!LINE_CHART_DATA || !myLineChart) return null;
-  if (LINE_CHART_DATA.length === 0) return null;
+  if (!LINE_CHART_DATA || !myLineChart) return;
+  if (LINE_CHART_DATA.length === 0) return;
   myLineChart.datasets = LINE_CHART_DATA.map((x) => x.value);
   myLineChart.update();
 }

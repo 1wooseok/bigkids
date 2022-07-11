@@ -1,6 +1,7 @@
 export default function createNetworkGraph(NETWORK_DATA, LINKS) {
-  if (!NETWORK_DATA || !LINKS) return null;
-  if (NETWORK_DATA.nodes.length === 0 || LINKS.length === 0) return null;
+  if (!NETWORK_DATA || !LINKS) return;
+  if (NETWORK_DATA.nodes.length === 0 || LINKS.length === 0) return;
+
   const networkGraph = {
     createGraph: function () {
       const nodes = NETWORK_DATA.nodes.map((d) => {
@@ -12,7 +13,7 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
 
       const props = {
         width: Number(document.getElementById("network_wrap").clientWidth),
-        mobile_width : 580,
+        mobile_width: 580,
         center_word: NETWORK_DATA.nodes[0].id, //CENTER_WORD,
         center_word_color: "#FF8E7E",
         ratio: this.width < this.mobile_width ? 5 : 10,
@@ -106,5 +107,6 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
         .on("end", dragended);
     },
   };
+
   networkGraph.createGraph();
 }

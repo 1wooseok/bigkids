@@ -1,32 +1,81 @@
+{% load static %}
+{% load yt_filter %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <style>
+        .cloud .cloud5 {
+            display: none;
+        }
+
+        .cloud .cloud6 {
+            display: none;
+        }
+
+        .cloud .w {
+            z-index: 1;
+        }
+
+        .cloud .b {
+            z-index: 1;
+        }
+
+        .cloud img {
+            z-index: 0;
+        }
+
+        .main_list {
+            position: relative;
+            z-index: 100;
+            background-color: #f8f8f8;
+        }
+    </style>
 </head>
+
 <body>
     <div id="video">
+        <div class="cloud cloud2">
+            <img class="cloud1" src="{% static 'image/cloud_white.png'%}" alt="">
+            <img class="cloud2" src="{% static 'image/cloud_skyblue.png'%}" alt="">
+            <img class="cloud3" src="{% static 'image/cloud_skyblue.png'%}" alt="">
+            <img class="cloud4" src="{% static 'image/cloud_white.png'%}" alt="">
+            <img class="cloud5" src="{% static 'image/cloud_white.png'%}" alt="">
+            <img class="cloud6" src="{% static 'image/cloud_skyblue.png'%}" alt="">
+            <div class="w w1"></div>
+            <div class="w w2"></div>
+            <div class="w w3"></div>
+            <div class="w w4"></div>
+            <div class="w w5"></div>
+            <div class="w w6"></div>
+            <div class="b b1"></div>
+            <div class="b b2"></div>
+            <div class="b b3"></div>
+            <div class="b b4"></div>
+        </div>
         <header id="header">
             <div class="inner_wrap">
                 <div class="logo">
-                    <a href="https://www.bigkinds.or.kr/">
-                        <img src="./image/logo.png" alt="logo">
+                    <a href="/">
+                        <img src="{%static 'image/logo.png' %}" alt="logo" />
                     </a>
                 </div>
                 <ul class="menu">
                     <li>
-                        <a href="./index.html">
-                            <img src="./image/char_black.png" alt="">    
-                            <img class="hidden" src="./image/char_color.png" alt="">
+                        <a href="/">
+                            <img src="{% static 'image/char_black.png' %}" alt="" />
+                            <img class="hidden" src="{% static 'image/char_color.png' %}" alt="" />
                         </a>
                     </li>
                     <li>
-                        <a href="./video.html">
-                            <img class="hidden" src="./image/video_black.png" alt="">
-                            <img src="./image/video_color.png" alt="">    
+                        <a href="/video">
+                            <img class="hidden" src="{% static 'image/video_black.png' %}" alt="" />
+                            <img src="{% static 'image/video_color.png' %}" alt="" />
                         </a>
                     </li>
                 </ul>
@@ -35,140 +84,88 @@
         <main class="video_main">
             <div class="inner_wrap">
                 <div class="main_top">
+                    {% if top %}
                     <div class="top_img">
-
+                        <iframe src="https://www.youtube-nocookie.com/embed/{{ top.url|yt_filter }}?controls=0"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                     </div>
                     <div class="top_text">
-                        <span>[파일럿2-1]</span>
-                        <h3>친구들과 함께 빅데이터로 놀아보자!</h3>
+                        <span>{{ top.pilot }}</span>
+                        <h3>{{ top.title }}</h3>
                         <div class="top_bar"></div>
-                        <p>알로스와 친구들과 함께 빅데이터에 대해서 알고 함께 놀아보자!</p>
+                        <p>
+                            {{ top.subtitle }}
+                        </p>
                     </div>
-                    <img class="cr1" src="./image/cr-1.png" alt="">
-                    <img class="cr2" src="./image/cr-2.png" alt="">
-                    <img class="cr3" src="./image/cr-3.png" alt="">
+                    {%else%}
+                    <div class="top_img">
+                        <iframe src="https://www.youtube-nocookie.com/embed/{{ objects.last.url|yt_filter }}?controls=0"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="top_text">
+                        <span>{{ objects.last.pilot }}</span>
+                        <h3>{{ objects.last.title }}</h3>
+                        <div class="top_bar"></div>
+                        <p>
+                            {{ objects.last.subtitle }}
+                        </p>
+                    </div>
+                    {% endif %}
+                    <img class="cr1" src="{% static 'image/cr-1.png' %}" alt="" />
+                    <img class="cr2" src="{% static 'image/cr-2.png' %}" alt="" />
+                    <img class="cr3" src="{% static 'image/cr-3.png' %}" alt="" />
                 </div>
                 <div class="main_list">
+                    {% for object in objects %}
                     <div class="list">
                         <div class="list_img">
-                            <!-- <img src="" alt=""> -->
+                            <iframe src="https://www.youtube-nocookie.com/embed/{{ object.url|yt_filter }}?controls=0"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
                         </div>
-                        <span>[파일럿 1-1]</span>
-                        <h3>밍이 알려주는 빅데이터와 빅카인즈</h3>
-                        <p>뉴스빅데이터로 뭘 할 수 있지? 천재여우 밍이 알려주는 빅데이터!</p>
+                        <span>{{ object.pilot }}</span>
+                        <h3>{{ object.title }}</h3>
+                        <p>
+                            {{ object.subtitle }}
+                        </p>
                     </div>
-                    <div class="list">
-                        <div class="list_img">
-                            <!-- <img src="" alt=""> -->
-                        </div>
-                        <span>[파일럿 1-1]</span>
-                        <h3>밍이 알려주는 빅데이터와 빅카인즈</h3>
-                        <p>뉴스빅데이터로 뭘 할 수 있지? 천재여우 밍이 알려주는 빅데이터!</p>
-                    </div>
-                    <div class="list">
-                        <div class="list_img">
-                            <!-- <img src="" alt=""> -->
-                        </div>
-                        <span>[파일럿 1-1]</span>
-                        <h3>밍이 알려주는 빅데이터와 빅카인즈</h3>
-                        <p>뉴스빅데이터로 뭘 할 수 있지? 천재여우 밍이 알려주는 빅데이터!</p>
-                    </div>
-                    <div class="list">
-                        <div class="list_img">
-                            <!-- <img src="" alt=""> -->
-                        </div>
-                        <span>[파일럿 1-1]</span>
-                        <h3>밍이 알려주는 빅데이터와 빅카인즈</h3>
-                        <p>뉴스빅데이터로 뭘 할 수 있지? 천재여우 밍이 알려주는 빅데이터!</p>
-                    </div>
-
-                    <div class="list">
-                        <div class="list_img">
-                            <!-- <img src="" alt=""> -->
-                        </div>
-                        <span>[파일럿 1-1]</span>
-                        <h3>밍이 알려주는 빅데이터와 빅카인즈</h3>
-                        <p>뉴스빅데이터로 뭘 할 수 있지? 천재여우 밍이 알려주는 빅데이터!</p>
-                    </div>
-                    <div class="list">
-                        <div class="list_img">
-                            <!-- <img src="" alt=""> -->
-                        </div>
-                        <span>[파일럿 1-1]</span>
-                        <h3>밍이 알려주는 빅데이터와 빅카인즈</h3>
-                        <p>뉴스빅데이터로 뭘 할 수 있지? 천재여우 밍이 알려주는 빅데이터!</p>
-                    </div>
-                    <div class="list">
-                        <div class="list_img">
-                            <!-- <img src="" alt=""> -->
-                        </div>
-                        <span>[파일럿 1-1]</span>
-                        <h3>밍이 알려주는 빅데이터와 빅카인즈</h3>
-                        <p>뉴스빅데이터로 뭘 할 수 있지? 천재여우 밍이 알려주는 빅데이터!</p>
-                    </div>
-                    <div class="list">
-                        <div class="list_img">
-                            <!-- <img src="" alt=""> -->
-                        </div>
-                        <span>[파일럿 1-1]</span>
-                        <h3>밍이 알려주는 빅데이터와 빅카인즈</h3>
-                        <p>뉴스빅데이터로 뭘 할 수 있지? 천재여우 밍이 알려주는 빅데이터!</p>
-                    </div>
-                    <div class="list">
-                        <div class="list_img">
-                            <!-- <img src="" alt=""> -->
-                        </div>
-                        <span>[파일럿 1-1]</span>
-                        <h3>밍이 알려주는 빅데이터와 빅카인즈</h3>
-                        <p>뉴스빅데이터로 뭘 할 수 있지? 천재여우 밍이 알려주는 빅데이터!</p>
-                    </div>
-                    <div class="list">
-                        <div class="list_img">
-                            <!-- <img src="" alt=""> -->
-                        </div>
-                        <span>[파일럿 1-1]</span>
-                        <h3>밍이 알려주는 빅데이터와 빅카인즈</h3>
-                        <p>뉴스빅데이터로 뭘 할 수 있지? 천재여우 밍이 알려주는 빅데이터!</p>
-                    </div>
-
-                                        <div class="list">
-                        <div class="list_img">
-                            <!-- <img src="" alt=""> -->
-                        </div>
-                        <span>[파일럿 1-1]</span>
-                        <h3>밍이 알려주는 빅데이터와 빅카인즈</h3>
-                        <p>뉴스빅데이터로 뭘 할 수 있지? 천재여우 밍이 알려주는 빅데이터!</p>
-                    </div>
-                    <div class="list">
-                        <div class="list_img">
-                            <!-- <img src="" alt=""> -->
-                        </div>
-                        <span>[파일럿 1-1]</span>
-                        <h3>밍이 알려주는 빅데이터와 빅카인즈</h3>
-                        <p>뉴스빅데이터로 뭘 할 수 있지? 천재여우 밍이 알려주는 빅데이터!</p>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
+
         </main>
         <footer>
             <div class="inner_wrap">
                 <div class="text">
                     <div>
-                        <p>상표 : 타이밍포올 주식회사 | 주소 : 경기도 성남시 분당구 돌마로 80 현대벤처빌 632</p>
-                        <p>사업자등록번호 : 715-87-2192 | 연락처 : 010-5598-2192</p>
+                        <p>
+                            ...
+                        </p>
+                        <p>...</p>
+                        <span id="modal1_btn">청소년보호정책</span><span id="modal2_btn">이용방법</span>
+
+
                     </div>
                     <div class="img">
-                        <img src="./image/footer_logo.png" alt="footer_logo">
+                        <img src="{% static 'image/footer_logo.png' %}" alt="footer_logo" />
                     </div>
                 </div>
-                <p>Copyright-2022-timing4all.com.</p>
+                <p>...</p>
             </div>
             <div class="top">
                 <a href="#header">
-                    <img src="./image/top.png" alt="">
+                    <img src="{% static 'image/top.png' %}" alt="" />
                 </a>
             </div>
         </footer>
     </div>
+    <div id="modal"></div>
+    <script defer="defer" type="module" src="{% static 'src/video.js' %}"></script>
 </body>
+
 </html>

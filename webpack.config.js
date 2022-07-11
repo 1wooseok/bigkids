@@ -1,15 +1,20 @@
 const path = require("path");
+const PROXY_SERVER = require('./API_SERVER.js');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "production",
+
   entry: {
     index: "./src/main.js",
+    video: "./src/video.js"
   },
+
   output: {
-    path: path.resolve(__dirname, "./public"),
-    filename: "[name]_bundle.js",
+    path: path.resolve(__dirname, "./dist"),
+    filename: "[name].min.js",
   },
+
   module: {
     rules: [
       {
@@ -17,27 +22,25 @@ module.exports = {
         exclude: /node_modules/,
         use: "babel-loader",
       },
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg|webp)$/,
-        use: ["file-loader"],
-      },
     ],
   },
+
   devServer: {
     port: 9000,
     open: true,
     hot: true,
-    proxy: { "/api": "http://toch.kr:8000" },
+    proxy: { "/api": PROXY_SERVER },
   },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: "index.html",
-      filename: "index.html",
       chunks: ["index"],
+    }),
+    new HtmlWebpackPlugin({
+      template: "video.html",
+      chunks: ["video"],
     }),
   ],
 };
+
