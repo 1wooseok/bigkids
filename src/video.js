@@ -1,3 +1,3 @@
-import Modal from "./Modal.js";
+import Modal from "./components/Modal.js";
 
 new Modal(document.getElementById("video"));

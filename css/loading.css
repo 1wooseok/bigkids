@@ -34,7 +34,8 @@
   height: 100%;
 }
 
-#WORD_CLOUD_Loader, #NETWORK_Loader {
+#WORD_CLOUD_Loader,
+#NETWORK_Loader {
   width: 25vw;
   height: 90vw;
   max-width: 1300px;
@@ -73,4 +74,8 @@
 
   font-weight: bold;
   font-size: 1.5rem;
+}
+
+#news_table {
+  position: relative;
 }

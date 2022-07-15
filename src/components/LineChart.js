@@ -1,6 +1,5 @@
 import Component from "./Component.js";
 import { generateXlabelElement, generateFullWeek } from "../utils/utils.js";
-// import { updateLineChart } from "../utils/createLineChart.js";
 
 export default class LineChart extends Component {
   template() {
@@ -27,11 +26,6 @@ export default class LineChart extends Component {
 
   mounted() {
     const { LINE_CHART_DATA, renderLineChart } = this.props;
-
-    if (!LINE_CHART_DATA) {
-      return;
-    }
     renderLineChart(LINE_CHART_DATA);
-    // updateLineChart(myChart, LINE_CHART_DATA);
   }
 }

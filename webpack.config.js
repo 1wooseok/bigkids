@@ -1,5 +1,4 @@
 const path = require("path");
-const PROXY_SERVER = require('./API_SERVER.js');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -23,13 +22,6 @@ module.exports = {
         use: "babel-loader",
       },
     ],
-  },
-
-  devServer: {
-    port: 9000,
-    open: true,
-    hot: true,
-    proxy: { "/api": PROXY_SERVER },
   },
 
   plugins: [

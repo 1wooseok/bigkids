@@ -7,7 +7,7 @@ export default class Keyword extends Component {
 
     if (!KEYWORD_DATA) {
       return `
-      <h3>오늘의 키워드</h3>
+      <h3>오늘의 <span class="today_key">키워드<span class="key_underline"></span></span></h3>
       <div class="keyword">
         <div id="prev_keyword" class="off_keyword"><div class='spinner2'></div></div>
         <div class="arr"><img src="../../static/image/next-2.png" alt="arr"></div>
@@ -20,7 +20,7 @@ export default class Keyword extends Component {
 
     const { prev, today, next } = KEYWORD_DATA;
     return `
-      <h3>오늘의 키워드</h3>
+      <h3>오늘의 <span class="today_key">키워드<span class="key_underline"></span></span></h3>
       <div class="keyword">
           <div id="prev_keyword" class="off_keyword prev_btn">${prev.word}</div>
           <div class="arr"><img class="prev_btn" src="../../static/image/next-2.png" alt="arr"></div>

@@ -1,6 +1,7 @@
 export default function createNetworkGraph(NETWORK_DATA, LINKS) {
-  if (!NETWORK_DATA || !LINKS) return;
-  if (NETWORK_DATA.nodes.length === 0 || LINKS.length === 0) return;
+  const setRadius = (value, scale) => {
+    return Math.min(value * scale, 34);
+  }
 
   const networkGraph = {
     createGraph: function () {
@@ -14,14 +15,17 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
       const props = {
         width: Number(document.getElementById("network_wrap").clientWidth),
         mobile_width: 580,
-        center_word: NETWORK_DATA.nodes[0].id, //CENTER_WORD,
+        center_word: NETWORK_DATA.nodes[0].id,
         center_word_color: "#FF8E7E",
         ratio: this.width < this.mobile_width ? 5 : 10,
         strength: this.width < this.mobile_width ? 45 : -45,
         collide: this.width < this.mobile_width ? 18 : 25,
       }
-      const { width, center_word, center_word_color, ratio, strength, collide } = props;
-      let fontSize = width < 580 ? 7 : 11;
+
+      const { width, mobile_width, center_word, center_word_color, ratio, strength, collide } = props;
+
+      let fontSize = width < 580 ? 7 : 10;
+
       const simulation = d3
         .forceSimulation(nodes)
         .force(
@@ -57,9 +61,18 @@ export default function createNetworkGraph(NETWORK_DATA, LINKS) {
         .each(function (d) {
           d3.select(this)
             .append("circle")
-            .attr("r", Math.min(d.value * ratio, 30)) //
+            .attr("r", d.id === center_word ? setRadius(d.value, ratio * 1.5) : setRadius(d.value, ratio))
+            // .attr("r", d.id === center_word ? Math.min(d.value * ratio * 1.5, 34) : Math.min(d.value * ratio, 34))
             .attr("fill", d.id === center_word ? center_word_color : "white")
             .attr("stroke", d.id === center_word ? center_word_color : null)
+            .attr("transform", (d) => {
+              if (d.id === center_word) {
+                if (width < mobile_width) {
+                  return "scale(1.1)"
+                }
+                return "scale(1.3)"
+              }
+            })
             .attr("stroke-width", 1);
           d3.select(this)
             .append("text")

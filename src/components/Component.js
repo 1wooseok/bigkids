@@ -16,7 +16,7 @@ export default class Component {
     return ``;
   }
   render() {
-    if (this.template() !== ``) {
+    if (this.template()) {
       this.target.innerHTML = this.template();
     }
     this.mounted();

@@ -17,10 +17,6 @@ export default class NetworkGraph extends Component {
 
   mounted() {
     const { NETWORK_DATA, renderNetworkGraph } = this.props;
-
-    if (!NETWORK_DATA) {
-      return;
-    }
     renderNetworkGraph(NETWORK_DATA);
   }
 }

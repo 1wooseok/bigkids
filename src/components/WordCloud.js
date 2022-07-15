@@ -17,10 +17,6 @@ export default class WordCloud extends Component {
 
   mounted() {
     const { WORD_CLOUD_DATA, renderWordCloud } = this.props;
-
-    if (!WORD_CLOUD_DATA) {
-      return;
-    }
     renderWordCloud(WORD_CLOUD_DATA);
   }
 }

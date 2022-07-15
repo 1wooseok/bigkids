@@ -7,20 +7,24 @@ import {
   NewsTable,
 } from "./components/index.js";
 
-import createWordCloud from "./utils/createWordCloud.js";
-import createNetworkGraph from "./utils/createNetworkGraph.js";
-import createLineChart from "./utils/createLineChart.js";
-import { generateLinksByNodes } from "./utils/utils.js";
-import { fetchBigKidsData } from "./api.js";
+import {
+  createWordCloud,
+  createNetworkGraph,
+  createLineChart,
+  PDF
+} from "./lib/index.js";
+
+import { generateLinksByNodes, dashFormat } from "./utils/utils.js";
+import { fetchBigKidsData } from "./utils/api.js";
 
 export default class App extends Component {
   setup() {
     this.state = {
-      date: new Date().toISOString().substring(0, 10),
+      date: dashFormat(),
       BIGKIDS_DATA: null,
       CURR_MODAL: null
     };
-    this.fetchData(this.state.date); // init
+    this.fetchData(this.state.date);
   }
 
   mounted() {
@@ -63,28 +67,31 @@ export default class App extends Component {
   }
 
   setEvent() {
-    this.target.addEventListener('click', e => {
-      e.stopImmediatePropagation();
+    this.target.onclick = e => {
       if (e.target.classList.contains('report_btn')) {
         if (!this.state.BIGKIDS_DATA) {
-          return alert("데이터가 없습니다.");
+          alert("데이터가 없습니다!");
+          return;
         }
-        window.print();
+        PDF.togglePdfBtn();
+        PDF.downloadPDF();
       }
-    })
+    }
   }
 
-  // method
   renderWordCloud(WORD_CLOUD_DATA) {
+    if (!WORD_CLOUD_DATA) return;
     createWordCloud(WORD_CLOUD_DATA);
   }
 
   renderNetworkGraph(NETWORK_DATA) {
+    if (!NETWORK_DATA) return;
     const LINKS = generateLinksByNodes(NETWORK_DATA);
     createNetworkGraph(NETWORK_DATA, LINKS);
   }
 
   renderLineChart(LINE_CHART_DATA) {
+    if (!LINE_CHART_DATA) return;
     return createLineChart(LINE_CHART_DATA);
   }
 
@@ -94,7 +101,7 @@ export default class App extends Component {
       const res = await fetchBigKidsData(newDate);
       this.setState({ date: newDate, BIGKIDS_DATA: res });
     } catch (err) {
-      console.error(err);
+      throw new Error(`${err} - while fetching Data`);
     }
   }
 }

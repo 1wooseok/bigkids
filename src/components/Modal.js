@@ -1,7 +1,7 @@
 import {
   Component,
   TOS_Modal
-} from "./components/index.js";
+} from "./index.js";
 
 export default class Modal extends Component {
   setup() {
@@ -19,7 +19,7 @@ export default class Modal extends Component {
   }
 
   setEvent() {
-    document.querySelector('footer').addEventListener('click', e => {
+    document.querySelector('footer').onclick = e => {
       e.stopImmediatePropagation();
       if (e.target.id === 'modal1_btn') {
         this.setCurrentModal('YPP');
@@ -27,7 +27,7 @@ export default class Modal extends Component {
       if (e.target.id === 'modal2_btn') {
         this.setCurrentModal('TOS');
       }
-    })
+    }
   }
 
   setCurrentModal(CURR_MODAL) {

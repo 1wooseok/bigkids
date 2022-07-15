@@ -6,146 +6,168 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>...</title>
+    <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/loading.css' %}" />
     <link rel="stylesheet" href="{% static 'css/lineChart.css' %}" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
         integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://d3js.org/d3.v4.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"></script>
-    <!-- EXCEL -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"
-        integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+
     <!-- PDF -->
     <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
         integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script defer="defer" type="module" src="{% static 'src/main.js' %}"></script>
+
+    <script defer="defer" src="{% static 'index.min.js' %}"></script>
 </head>
 
 <body>
     <div id="modal"></div>
     <div id="wrap">
-        <header id="header">
-            <div class="inner_wrap">
-                <div class="logo"><a href="/"><img src="{% static 'image/logo.png'%}" alt="logo" /></a></div>
-                <ul class="menu">
-                    <li><a href="/"><img class="hidden" src="{% static 'image/char_black.png'%}" alt="" /> <img
-                                src="{% static 'image/char_color.png'%}" alt="" /></a></li>
-                    <li><a href="/video"><img src="{% static 'image/video_black.png'%}" alt="" />
-                            <img class="hidden" src="{% static 'image/video_color.png'%}" alt="" /></a></li>
-                </ul>
-            </div>
-        </header>
-        <main>
-            <div class="con1" id="keyword_wrap">
-                <h3>오늘의 키워드</h3>
-                <div class="keyword">
-                    <div id="prev_keyword" class="off_keyword prev"></div>
-                    <div class="arr"><img class="prev" src="{% static 'image/next-2.png'%}" alt="arr" /></div>
-                    <div id="today_keyword" class="on_keyword"></div>
-                    <div class="arr"><img src="{% static 'image/next-2.png'%}" alt="arr" /></div>
-                    <div id="next_keyword" class="off_keyword"></div>
-                </div>
-                <div class="key_times">
-                    <p id="period"></p>
-                </div>
-            </div>
-            <div class="con2">
+        <div id="pdf">
+            <header id="header">
                 <div class="inner_wrap">
-                    <div class="title"><img class="cr" src="{% static 'image/cr-1.png'%}" alt="cr" />
-                        <p>어떤 내용이 있을까?</p><img class="icon" src="{% static 'image/box_icon.png'%}" alt="" />
-                        <div class="bottom_bar"></div>
+                    <div class="logo">
+                        <a href="/">
+                            <img src="{% static 'image/logo.png'%}" alt="logo" />
+                        </a>
                     </div>
+                    <ul class="menu">
+                        <li>
+                            <a href="/">
+                                <img class="hidden" src="{% static 'image/char_black.png'%}" alt="" />
+                                <img src="{% static 'image/char_color.png'%}" alt="" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/video">
+                                <img src="{% static 'image/video_black.png'%}" alt="" />
+                                <img class="hidden" src="{% static 'image/video_color.png'%}" alt="" />
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="inner_wrap words_wrap">
-                    <div id="word_cloud"></div>
-                    <div id="network_wrap" class="network-graph"></div>
-                </div>
-            </div>
-            <div class="con3">
-                <div class="inner_wrap">
-                    <div class="title"><img class="cr" src="{% static 'image/cr-2.png'%}" alt="cr" />
-                        <p>뉴스가 언제 나왔지?</p><img class="icon" src="{% static 'image/box_icon.png'%}" alt="" />
-                        <div class="bottom_bar"></div>
+            </header>
+            <main>
+                <div class="con1" id="keyword_wrap"></div>
+
+                <div class="con2">
+                    <div class="inner_wrap">
+                        <div class="title"><img class="cr" src="{% static 'image/cr-1.png'%}" alt="cr" />
+                            <p>어떤 내용이 있을까?</p><img class="icon" src="{% static 'image/box_icon.png'%}" alt="" />
+                            <div class="bottom_bar"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="inner_wrap">
-                    <div class="lineChart_wrap" id="lineChart_wrap">
-                        <canvas id="myChart"></canvas>
-                        <div class="xAxis"></div>
+                    <div class="inner_wrap words_wrap">
+                        <div id="word_cloud"></div>
+                        <div id="network_wrap" class="network-graph"></div>
                     </div>
-                </div>
-            </div>
-            <div class="con4">
-                <div class="inner_wrap">
-                    <div class="title"><img class="cr" src="{% static 'image/cr-3.png'%}" alt="cr" />
-                        <p>이렇게 보면 어떨까?</p><img class="icon" src="{% static 'image/box_icon.png'%}" alt="" />
-                        <div class="bottom_bar"></div>
+
+                    <div class="con3">
+                        <div class="inner_wrap ">
+                            <div class="title news_title"><img class="cr" src="{% static 'image/cr-2.png'%}" alt="cr" />
+                                <p>뉴스가 언제 나왔지?</p><img class="icon" src="{% static 'image/box_icon.png'%}" alt="" />
+                                <div class="bottom_bar"></div>
+                            </div>
+                        </div>
+                        <div class="inner_wrap">
+                            <div class="lineChart_wrap" id="lineChart_wrap">
+                                <canvas id="myChart"></canvas>
+                                <div class="xAxis"></div>
+                            </div>
+                        </div>
                     </div>
-                    <table class="con4_table">
-                        <thead>
-                            <tr>
-                                <th>날짜</th>
-                                <th>언론사</th>
-                                <th>제목</th>
-                                <th>링크</th>
-                            </tr>
-                        </thead>
-                        <tbody id="news_table"></tbody>
-                    </table>
-                    <div class="inner_wrap2">
-                        <button id="report_btn" class="con4_btn report_btn">
-                            <img class="report_btn" src="{% static 'image/btn_icon.png'%}" alt="" />
-                            <p id="report_text" class="report_btn">리포트 다운로드</p>
-                        </button>
+
+                    <div class="con4">
+                        <div class="inner_wrap">
+                            <div class="title"><img class="cr" src="{% static 'image/cr-3.png'%}" alt="cr" />
+                                <p>이렇게 보면 어떨까?</p><img class="icon" src="{% static 'image/box_icon.png'%}" alt="" />
+                                <div class="bottom_bar"></div>
+                            </div>
+                            <table class="con4_table">
+                                <thead>
+                                    <tr>
+                                        <th>날짜</th>
+                                        <th>언론사</th>
+                                        <th>제목</th>
+                                        <th>링크</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="news_table"></tbody>
+                            </table>
+                        </div>
                     </div>
+
                 </div>
+            </main>
+        </div>
+
+        <div class="con5">
+            <div class="report_wrap inner_wrap2">
+                <button id="report_btn" class="con4_btn report_btn">
+                    <img class="report_btn" src="{% static 'image/btn_icon.png'%}" alt="" />
+                    <p id="report_text" class="report_btn">리포트 다운로드</p>
+                </button>
             </div>
             <div class="con_bottom">
-                <div class="inner_wrap"><a target="_blank" href="https://www.bigkinds.or.kr/">
-                        <h3>더 자세한 분석을 원한다면!</h3><img src="{% static 'image/logo_en.png'%}" alt="logo_en" />
-                    </a></div>
+                <div class="inner_wrap">
+                    <a target="_blank" href="https://www.bigkinds.or.kr/">
+                        <h3>더 자세한 분석을 원한다면!</h3>
+                        <img src="{% static 'image/logo_en.png'%}" alt="logo_en" />
+                    </a>
+                </div>
             </div>
-            <div class="cloud">
-                <img class="cloud1" src="{% static 'image/cloud_white.png'%}" alt="">
-                <img class="cloud2" src="{% static 'image/cloud_skyblue.png'%}" alt="">
-                <img class="cloud3" src="{% static 'image/cloud_skyblue.png'%}" alt="">
-                <img class="cloud4" src="{% static 'image/cloud_white.png'%}" alt="">
-                <img class="cloud5" src="{% static 'image/cloud_white.png'%}" alt="">
-                <img class="cloud6" src="{% static 'image/cloud_skyblue.png'%}" alt="">
-                <div class="w w1"></div>
-                <div class="w w2"></div>
-                <div class="w w3"></div>
-                <div class="w w4"></div>
-                <div class="w w5"></div>
-                <div class="w w6"></div>
-                <div class="b b1"></div>
-                <div class="b b2"></div>
-                <div class="b b3"></div>
-                <div class="b b4"></div>
-            </div>
-        </main>
+        </div>
+
         <footer>
             <div class="inner_wrap">
                 <div class="text">
                     <div>
                         <p>...</p>
                         <p>...</p>
-                        <span id="modal1_btn">청소년보호정책</span><span id="modal2_btn">이용방법</span>
+                        <span id="modal1_btn">...</span><span id="modal2_btn">...</span>
                     </div>
-                    <div class="img"><a href="https://www.timing4all.com/" target="_blank"><img
-                                src="{% static 'image/footer_logo.png'%}" alt="footer_logo" /></a></div>
+                    <div class="img">
+                        <a href="https://www.timing4all.com/" target="_blank">
+                            <img src="{% static 'image/footer_logo.png'%}" alt="footer_logo" />
+                        </a>
+                    </div>
                 </div>
                 <p>...</p>
             </div>
-            <div class="top"><a href="#header"><img src="{% static 'image/top.png'%}" alt="" /></a></div>
+            <div class="top">
+                <div class="btn" onclick="javascript:window.scrollTo(0, 0);">
+                    <img src="{% static 'image/top.png'%}" alt="" />
+                </div>
+            </div>
         </footer>
+        <div hidden id="terms">
+            {{ terms.terms|linebreaksbr }}
+        </div>
+        <div hidden id="manual">{{ terms.manual|linebreaksbr }}</div>
+    </div>
+    <div class="cloud">
+        <img class="cloud1" src="{% static 'image/cloud_white.png'%}" alt="">
+        <img class="cloud2" src="{% static 'image/cloud_skyblue.png'%}" alt="">
+        <img class="cloud3" src="{% static 'image/cloud_skyblue.png'%}" alt="">
+        <img class="cloud4" src="{% static 'image/cloud_white.png'%}" alt="">
+        <img class="cloud5" src="{% static 'image/cloud_white.png'%}" alt="">
+        <img class="cloud6" src="{% static 'image/cloud_skyblue.png'%}" alt="">
+        <div class="w w1"></div>
+        <div class="w w2"></div>
+        <div class="w w3"></div>
+        <div class="w w4"></div>
+        <div class="w w5"></div>
+        <div class="w w6"></div>
+        <div class="b b1"></div>
+        <div class="b b2"></div>
+        <div class="b b3"></div>
+        <div class="b b4"></div>
     </div>
 </body>
 

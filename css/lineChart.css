@@ -1,13 +1,22 @@
+/* @media print{ .con2 { page-break-after: always;}} */
+/* Line Chart */
+#myChart {
+  z-index: 0;
+  border-bottom: 3px solid #ccc;
+  padding: 0 5rem;
+}
+
 .lineChart_wrap {
   position: relative;
   margin: 2.5rem auto 0 auto;
+
+  max-height: 400px;
 }
 
 .xAxis {
   display: flex;
-  justify-content: first baseline;
 
-  margin-top: 10px;
+  padding: 1rem 0;
 }
 
 .x-label-wrap {
@@ -32,7 +41,7 @@
 .x-date-label {
   margin-top: 0.5rem;
 
-  font-size: 0.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: black;
 
@@ -51,6 +60,28 @@
   color: #396ee2;
 }
 
-#news_table {
-  position: relative;
+@media (min-width: 801px) and (max-width: 1279px) {
+  #myChart {
+    padding: 0 3rem;
+  }
+}
+
+@media (min-width: 581px) and (max-width: 800px) {
+  #myChart {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .lineChart_wrap {
+    max-height: 250px;
+  }
+
+  #myChart {
+    padding: 0 1rem;
+  }
+
+  #WORD_CLOUD {
+    padding-top: 2rem;
+  }
 }

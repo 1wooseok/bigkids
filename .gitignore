@@ -1,11 +1,13 @@
-node_modules
+.vscode
 
 dist
 
-.vscode
+node_modules
+
+API_SERVER.js
 
 .DS_Store
 
-package-lock.json
+video.html
 
-API_SERVER.js
+image

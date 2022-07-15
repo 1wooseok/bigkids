@@ -1,9 +1,6 @@
-import { mapWeightAndFont } from "./utils.js";
+import { mapWeightAndFont } from "../utils/utils.js";
 
 export default function createWordCloud(WORD_CLOUD_DATA) {
-    if (!WORD_CLOUD_DATA) return;
-    if (WORD_CLOUD_DATA.length === 0) return;
-
     const fonts = mapWeightAndFont(WORD_CLOUD_DATA);
     const width = document.getElementById("word_cloud").clientWidth;
     const wrap_scale = width < 580 ? 1.3 : 2;

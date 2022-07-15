@@ -1,4 +1,4 @@
-import { API_SERVER } from "../API_SERVER";
+import { API_SERVER } from "../../API_SERVER.js";
 
 export async function fetchBigKidsData(date) {
   const TIME_OUT = { timeout: 10000 };
