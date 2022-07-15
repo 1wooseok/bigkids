@@ -6,7 +6,7 @@
 그래프, 워드클라우드 통해 오늘의 뉴스를 한눈에 볼 수 있습니다.
 ```
 
-<strong>https://bigkids.co.kr</strong>
+<strong><a target="_blank" href="https://bigkids.co.kr">링크</a></strong>
 
 <br>
 
@@ -70,9 +70,9 @@ loader, plugin...
 좀 더 체계적으로 관리하기 위해 ES6 class문법을 사용해 바뀌는 요소들을 컴포넌트화 하였습니다.
 ```
 
-<small><i>"개발자 황준일 Vanilla Javascript로 웹 컴포넌트 만들기"</i> 를 참고하였습니다.</small>
-
 ```javascript
+// "개발자 황준일 Vanilla Javascript로 웹 컴포넌트 만들기"를 참고했습니다.
+
 export default class Component {
   target; // 컴포넌트가 마운트 될 DOM입니다.
   state;
@@ -92,6 +92,8 @@ export default class Component {
 
   setEvent() {}
   // 컴포넌트에 이벤트를 등록하는 함수입니다.
+  // target에만 이벤트 리스너를 추가하고
+  // 나머지는 주로 이벤트 버블링을 통해 처리합니다.
 
   mounted() {}
   // 컴포넌트가 DOM에 마운트 된 후 실행되는 함수입니다.
@@ -106,6 +108,7 @@ export default class Component {
   render() {
     const template = this.tempate();
     if (template) {
+      // 렌더링할 DOM이 있을때만 렌더링 합니다.
       this.target.innerHTML = template;
       this.mounted();
     }
@@ -121,6 +124,7 @@ export default class Component {
     this.render();
   }
   // 컴포넌트의 상태를 변경하는 함수입니다.
+  // 컴포넌트의 상태는 이 메서드를 사용해서만 변경합니다.
   // 상태가 변경후 render함수를 호출해 상태에 따른 리렌더링이 자동화됩니다.
   // 렌더링이 필요할때 상태만 변경하면 되기때문에,
   // 데이터가 없는 경우 UI, Loading UI등을 매우 편리하게 다룰 수 있었습니다.
@@ -128,7 +132,15 @@ export default class Component {
 ```
 
 ```
-컴포넌트를 추상화한뒤 상속을 받아 사용했습니다.
+컴포넌트를 추상화하여 컴포넌트 사용법을 강제할 수있으며
+
+가독성, 기능 추가, 디버깅 등 전반적인 개발이 매우 편리해졌습니다.
+
+실제 컴포넌트를 생성할때는 위의 추상화한 컴포넌트로부터 상속을 받아 생성합니다.
+
+최상위 컴포넌트인 App에서만 상태를 갖으며,
+
+자식 컴포넌트에 상태 및 상태를 변경하는 함수를 넘겨주는 방식으로 사용했습니다.
 ```
 
 <br>
@@ -168,7 +180,9 @@ async function fetchWithTimeout(resource, options = {}) {
 
 날짜를 파라미터로 요청합니다.
 
-timeout을 10초를 설정했습니다.
+timeout을 설정하여 10초 이상 데이터 로드가 완료되지 않을 경우
+
+alert를 통해 사용자에게 실패에 따른 조치를 취할것을 알림니다.
 
 \*---- timeout 원리 추가하기 ----\*
 
@@ -202,7 +216,7 @@ timeout을 10초를 설정했습니다.
 실제 DOM 객체인 `target`속성에 이벤트를 등록하고 있기때문에 자식요소가 리렌더링 되어도 `target`은 리렌더링 되지 않기때문에 이벤트 리스너가 중첩되서 추가되는 현상이 발생했습니다.
 ```
 
-<img src="./image/evt.png" />
+<img alt="개발자도구 Event Listener 탭, 클릭이벤트 중첩 이미지" src="./image/evt.png" />
 
 ```
 이를 해결하기 위해 `target`에 이벤트를 등록하는 대신 `template()`이 반환하는 html에 직접
