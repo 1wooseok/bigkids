@@ -20,6 +20,14 @@
 
 ### <b>기술</b>
 
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style&logo=JavaScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/Babel 6.23.0-F9DC3E?style&logo=babel&logoColor=white"/>
+<img src="https://img.shields.io/badge/Webpack 5.73.0-8DD6F9?style&logo=webpack&logoColor=white"/>
+<img src="https://img.shields.io/badge/D3.js 5.16.0-F9A03C?style&logo=D3.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/Chart.js 3.7.1-FF6384?style&logo=D3.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/jsPDF 2.5.1-8c5cdb?style&logo=pdf&logoColor=white"/>
+<img src="https://img.shields.io/badge/html2canvas 1.4.1-679e38?style&logo=&logoColor=white"/>
+
 ```
 "babel": "^6.23.0",
 "webpack": "^5.73.0"
