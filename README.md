@@ -1,4 +1,6 @@
-### <b>소개</b>
+# <b>BigKids</b>
+
+## <b>Outline</b>
 
 ```
 "어린이들을 위한 뉴스"를 제공하는 웹사이트 입니다.
@@ -6,11 +8,11 @@
 그래프, 워드클라우드 통해 오늘의 뉴스를 한눈에 볼 수 있습니다.
 ```
 
-<strong><a target="_blank" href="https://bigkids.co.kr">링크</a></strong>
+<strong><a target="_blank" href="https://bigkids.co.kr">Link</a></strong>
 
 <br>
 
-### <b>기간</b>
+## <b>Period</b>
 
 ```
 22.06.22 - 22.07.15
@@ -18,31 +20,13 @@
 
 <br>
 
-### <b>기술</b>
+## <b>Tools</b>
 
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style&logo=JavaScript&logoColor=white"/>
-<img src="https://img.shields.io/badge/Babel 6.23.0-F9DC3E?style&logo=babel&logoColor=white"/>
-<img src="https://img.shields.io/badge/Webpack 5.73.0-8DD6F9?style&logo=webpack&logoColor=white"/>
-<img src="https://img.shields.io/badge/D3.js 5.16.0-F9A03C?style&logo=D3.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/Chart.js 3.7.1-FF6384?style&logo=D3.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/jsPDF 2.5.1-8c5cdb?style&logo=pdf&logoColor=white"/>
-<img src="https://img.shields.io/badge/html2canvas 1.4.1-679e38?style&logo=&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/Babel 6.23.0-F9DC3E?style&logo=babel&logoColor=white"/> <img src="https://img.shields.io/badge/Webpack 5.73.0-8DD6F9?style&logo=webpack&logoColor=white"/> <img src="https://img.shields.io/badge/D3.js 5.16.0-F9A03C?style&logo=D3.js&logoColor=white"/> <img src="https://img.shields.io/badge/Chart.js 3.7.1-FF6384?style&logo=D3.js&logoColor=white"/> <img src="https://img.shields.io/badge/jsPDF 2.5.1-8c5cdb?style&logo=pdf&logoColor=white"/> <img src="https://img.shields.io/badge/html2canvas 1.4.1-679e38?style&logo=&logoColor=white"/>
 
-```
-"babel": "^6.23.0",
-"webpack": "^5.73.0"
-loader, plugin...
+<br><br>
 
-// CDN
-"D3.js": "5.16.0",
-"Chart.js": "3.7.1",
-"jsPDF": "2.5.1",
-"html2canvas": "1.4.1"
-```
-
-<br>
-
-### <b>맡은 역할</b>
+## <b>Role</b>
 
 ```
 - 차트놀이 페이지 개발 ( 메인페이지 )
@@ -58,15 +42,16 @@ loader, plugin...
 
 <br>
 
-### <b>부가 설명</b>
-
-<hr>
-
-### <b>1. Vanilla JS 컴포넌트</b>
+## <b>Description</b>
 
 <br>
 
-```
+### <b>1. Vanilla JS 컴포넌트</b>
+
+<hr>
+
+<br>
+
 단순한 어플리케이션이기 때문에 관리해야 할 상태가 거의 없지만,
 
 날짜에 따라 데이터를 서버로부터 불러와 키워드, 그래프, 테이블 등
@@ -76,11 +61,10 @@ loader, plugin...
 프로젝트 초기 단순히 요청후 렌더링 함수를 호출하는 방식에 어려움을 느껴
 
 좀 더 체계적으로 관리하기 위해 ES6 class문법을 사용해 바뀌는 요소들을 컴포넌트화 하였습니다.
-```
+
+<small><i>"개발자 황준일 Vanilla Javascript로 웹 컴포넌트 만들기"</i>를 참고했습니다.</small>
 
 ```javascript
-// "개발자 황준일 Vanilla Javascript로 웹 컴포넌트 만들기"를 참고했습니다.
-
 export default class Component {
   target; // 컴포넌트가 마운트 될 DOM입니다.
   state;
@@ -139,7 +123,6 @@ export default class Component {
 }
 ```
 
-```
 컴포넌트를 추상화하여 컴포넌트 사용법을 강제할 수있으며
 
 가독성, 기능 추가, 디버깅 등 전반적인 개발이 매우 편리해졌습니다.
@@ -149,11 +132,14 @@ export default class Component {
 최상위 컴포넌트인 App에서만 상태를 갖으며,
 
 자식 컴포넌트에 상태 및 상태를 변경하는 함수를 넘겨주는 방식으로 사용했습니다.
-```
 
 <br>
 
 ### <b>2. API 호출</b>
+
+<hr>
+
+<br>
 
 ```javascript
 import { API_SERVER } from "../../API_SERVER.js";
