@@ -1,44 +1,36 @@
-# <b>BigKids</b>
+# <b>Big Kids</b>
 
 ## <b>Outline</b>
 
-```
 "어린이들을 위한 뉴스"를 제공하는 웹사이트 입니다.
 
 그래프, 워드클라우드 통해 오늘의 뉴스를 한눈에 볼 수 있습니다.
-```
 
-<strong><a target="_blank" href="https://bigkids.co.kr">Link</a></strong>
+<strong><a target="_blank" href="https://bigkids.co.kr">https://bigkids.co.kr</a></strong>
 
 <br>
 
 ## <b>Period</b>
 
-```
-22.06.22 - 22.07.15
-```
+22.06.22 - 22.07.14
 
 <br>
 
 ## <b>Tools</b>
 
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/Babel 6.23.0-F9DC3E?style&logo=babel&logoColor=white"/> <img src="https://img.shields.io/badge/Webpack 5.73.0-8DD6F9?style&logo=webpack&logoColor=white"/> <img src="https://img.shields.io/badge/D3.js 5.16.0-F9A03C?style&logo=D3.js&logoColor=white"/> <img src="https://img.shields.io/badge/Chart.js 3.7.1-FF6384?style&logo=D3.js&logoColor=white"/> <img src="https://img.shields.io/badge/jsPDF 2.5.1-8c5cdb?style&logo=pdf&logoColor=white"/> <img src="https://img.shields.io/badge/html2canvas 1.4.1-679e38?style&logo=&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/Babel-F9DC3E?style&logo=babel&logoColor=white"/> <img src="https://img.shields.io/badge/Webpack-8DD6F9?style&logo=webpack&logoColor=white"/> <img src="https://img.shields.io/badge/D3-F9A03C?style&logo=D3.js&logoColor=white"/> <img src="https://img.shields.io/badge/Chart-FF6384?style&logo=D3.js&logoColor=white"/> <img src="https://img.shields.io/badge/jsPDF-8c5cdb?style&logo=pdf&logoColor=white"/> <img src="https://img.shields.io/badge/html2canvas-679e38?style&logo=&logoColor=white"/>
 
 <br><br>
 
 ## <b>Role</b>
 
-```
-- 차트놀이 페이지 개발 ( 메인페이지 )
+\- 차트놀이 페이지 개발 ( 메인페이지 )
 
-- 서버 데이터 요청 및 시각화
+\- 워드클라우드, 네트워크 그래프, 선 그래프, 테이블을 통해 서버 데이터 시각화
 
-- 워드클라우드, 네트워크 그래프, 선 그래프, 테이블을 사용한 데이터 시각화
+\- 웹 페이지 PDF 다운로드
 
-- 웹페이지 PDF 다운로드
-
-- 반응형 웹페이지
-```
+\- 반응형 웹
 
 <br>
 
@@ -47,8 +39,6 @@
 <br>
 
 ### <b>1. Vanilla JS 컴포넌트</b>
-
-<hr>
 
 <br>
 
@@ -137,8 +127,6 @@ export default class Component {
 
 ### <b>2. API 호출</b>
 
-<hr>
-
 <br>
 
 ```javascript
@@ -210,7 +198,7 @@ alert를 통해 사용자에게 실패에 따른 조치를 취할것을 알림�
 실제 DOM 객체인 `target`속성에 이벤트를 등록하고 있기때문에 자식요소가 리렌더링 되어도 `target`은 리렌더링 되지 않기때문에 이벤트 리스너가 중첩되서 추가되는 현상이 발생했습니다.
 ```
 
-<img alt="개발자도구 Event Listener 탭, 클릭이벤트 중첩 이미지" src="./image/evt.png" />
+<img alt="개발자도구 Event Listener 탭, 클릭이벤트 중첩 이미지" src="./evt.png" />
 
 ```
 이를 해결하기 위해 `target`에 이벤트를 등록하는 대신 `template()`이 반환하는 html에 직접
