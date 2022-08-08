@@ -1,26 +1,36 @@
+import { TIME_OUT, MESSAGE } from "./constant";
 import { API_SERVER } from "../../API_SERVER.js";
 
-export async function fetchBigKidsData(date) {
-  const TIME_OUT = { timeout: 10000 };
-  const API_URL = `API_SERVER/${date}`;
-  const MESSAGE = "데이터를 불러오는데 실패했습니다. 새로고침후 다시 시도해 주세요!";
-  try {
-    const res = await fetchWithTimeout(API_URL, TIME_OUT);
-    const json = await res.json();
-    return json;
-  } catch (err) {
-    throw new Error(alert(MESSAGE));
+const cache = {};
+
+async function request(url) {
+  if (cache[url]) {
+    return cache[url];
   }
+
+  const res = await fetchWithTimeout(url, TIME_OUT);
+
+  if (res.ok) {
+    const json = await res.json();
+    cache[url] = json;
+    return json;
+  }
+
+  throw new Error(alert(MESSAGE));
 }
 
-async function fetchWithTimeout(resource, options = {}) {
+async function fetchWithTimeout(url, options = {}) {
   const { timeout } = options;
   const abortController = new AbortController();
   const id = setTimeout(() => abortController.abort(), timeout);
-  const response = await fetch(resource, {
+  const response = await fetch(url, {
     ...options,
     signal: abortController.signal,
   });
   clearTimeout(id);
   return response;
+}
+
+export async function fetchBigKidsData(date) {
+  return request(`${API_SERVER}/${date}`);
 }

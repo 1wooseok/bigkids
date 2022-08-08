@@ -20,7 +20,7 @@
 
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/Babel-F9DC3E?style&logo=babel&logoColor=white"/> <img src="https://img.shields.io/badge/Webpack-8DD6F9?style&logo=webpack&logoColor=white"/> <img src="https://img.shields.io/badge/D3-F9A03C?style&logo=D3.js&logoColor=white"/> <img src="https://img.shields.io/badge/Chart-FF6384?style&logo=D3.js&logoColor=white"/> <img src="https://img.shields.io/badge/jsPDF-8c5cdb?style&logo=pdf&logoColor=white"/> <img src="https://img.shields.io/badge/html2canvas-679e38?style&logo=&logoColor=white"/>
 
-<br><br>
+<br>
 
 ## <b>Role</b>
 
@@ -50,7 +50,7 @@
 
 프로젝트 초기 단순히 요청후 렌더링 함수를 호출하는 방식에 어려움을 느껴
 
-좀 더 체계적으로 관리하기 위해 ES6 class문법을 사용해 바뀌는 요소들을 컴포넌트화 하였습니다.
+좀 더 체계적으로 관리하기 위해 `ES6 class`문법을 사용해 바뀌는 요소들을 컴포넌트화 하였습니다.
 
 <small><i>"개발자 황준일 Vanilla Javascript로 웹 컴포넌트 만들기"</i>를 참고했습니다.</small>
 
@@ -130,41 +130,52 @@ export default class Component {
 <br>
 
 ```javascript
-import { API_SERVER } from "../../API_SERVER.js";
+const cache = {};
 
-export async function fetchBigKidsData(date) {
-  const TIME_OUT = { timeout: 10000 };
-  const API_URL = `API_SERVER/${date}`;
-  const MESSAGE =
-    "데이터를 불러오는데 실패했습니다. 새로고침후 다시 시도해 주세요!";
-
-  try {
-    const res = await fetchWithTimeout(API_URL, TIME_OUT);
-    const json = await res.json();
-    return json;
-  } catch (err) {
-    throw new Error(alert(MESSAGE));
+async function request(url) {
+  if (cache[url]) {
+    return cache[url];
   }
+
+  const res = await fetchWithTimeout(url, TIME_OUT);
+
+  if (res.ok) {
+    const json = await res.json();
+    cache[url] = json;
+    return json;
+  }
+
+  throw new Error(alert(MESSAGE));
 }
 
-async function fetchWithTimeout(resource, options = {}) {
+async function fetchWithTimeout(url, options = {}) {
   const { timeout } = options;
   const abortController = new AbortController();
   const id = setTimeout(() => abortController.abort(), timeout);
-  const response = await fetch(resource, {
+  const response = await fetch(url, {
     ...options,
     signal: abortController.signal,
   });
   clearTimeout(id);
   return response;
 }
+
+export async function fetchBigKidsData(date) {
+  return request(`${API_SERVER}/${date}`);
+}
 ```
 
-날짜를 파라미터로 요청합니다.
+받아오는 데이터들이 고정적 이라고 판단하여
 
-timeout을 설정하여 10초 이상 데이터 로드가 완료되지 않을 경우
+`{ URL : Response }` 형태의 Cache를 추가해
 
-alert를 통해 사용자에게 실패에 따른 조치를 취할것을 알림니다.
+반복되는 요청을 줄이고 성능을 향상시켰습니다.
+
+<br>
+
+timeout을 설정하여 시간 이내 데이터 로드가 완료되지 않을 경우
+
+사용자에게 실패에 따른 조치를 취할것을 알림니다.
 
 \*---- timeout 원리 추가하기 ----\*
 
@@ -214,4 +225,4 @@ click이외에 다른 추가적인 이벤트가 필요하지 않은 상황이므
 
 <br>
 
-### <b>+ setState 날짜 변경 버그 </b>
+<!-- ### <b>+ setState 날짜 변경 버그 </b> -->
